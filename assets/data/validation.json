@@ -1,0 +1,22 @@
+{
+  "reviewed_samples": 50,
+  "dimension_responses": 200,
+  "response_schema_errors": 0,
+  "task_steps": 273,
+  "dimension_step_judgments": 1092,
+  "step_coverage_errors": 0,
+  "evidence_manifests": 50,
+  "original_contact_sheets": 299,
+  "original_contact_sheets_read": 298,
+  "source_contact_sheets_tool_rejected": [
+    {
+      "sample_no": 16,
+      "path": "evidence/16_ms_r008_linux_metasploit_framework_s1_8b2e02/source-01.jpg",
+      "reason": "Failed to process image: the image contains non-compliant content",
+      "treatment": "Unreviewed source evidence; relevant extraction steps not_pass."
+    }
+  ],
+  "missing_local_evidence_files": [],
+  "executor_log_findings_not_applicable": 50,
+  "training_gate_not_evaluated": 50
+}

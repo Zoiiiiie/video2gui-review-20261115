@@ -1,0 +1,737 @@
+[
+  {
+    "id": "step_extraction",
+    "original_version": "4.2.0",
+    "effective_version": "4.2.0",
+    "original_digest": "sha256:46284e6b06f3fd77f60c1d4675447485359a977d9a36a062b0234c5ccf23c02d",
+    "effective_digest": "sha256:46284e6b06f3fd77f60c1d4675447485359a977d9a36a062b0234c5ccf23c02d",
+    "original_instructions": "只评估教程到 task_spec 的提取质量，不在本维度评估候选 trajectory 是否执行成功。联合使用 ASR、goal 图片、clip_timestamp_sec 的目标帧与相邻帧、visual_requirements 和 tolerance。\n\nclip_timestamp_sec 是目标状态定位提示，不是逐帧强一致契约；抽到过渡帧、轻微时间漂移或目标秒点未完整展示，只要相邻帧、goal 图片或 ASR 能支持，就只能记 warning，不能单独判 fail。\n\nvisual_requirements.tolerance 是业务明确允许的泛化边界，必须按其字面执行，不得以模型常识推翻。移动端到桌面端、控件形态、配色等差异只要 tolerance 允许就不得判错；若 tolerance 明确说明幻灯片、图标或概念画面代表目标软件/状态，则按该代表关系验收，不要求源视频真实打开软件。\n\nASR 明确口述的动作同样是有效来源，即使画面未完整展示。把口述的“关闭并重开”进一步写成可观察的持久性复查，只要不改变 query 的核心目标，可记 warning 但不能直接 fail。\n\n核心任务方法（例如创建主要内容、输入关键代码、改变关键设置）若在教程、ASR、tolerance 和任务边界中均无依据，却被写成必需操作，必须 fail；非关键失败尝试、重试、等待、清屏或验证动作被过度描述，但不改变目标状态和核心方法时只记 warning。不能因教程起始画面已处于某状态而强制补写更早的环境准备。\n\n必须覆盖每个 task_spec step。只有 warning 且关键提取正确时，status 和对应 step result 必须为 pass，score 应为 2；存在上述核心矛盾或关键证据不足时才为 fail/not_pass。使用 0–3 分并定位 step_id 或视频时间。",
+    "effective_instructions": "只评估教程到 task_spec 的提取质量，不在本维度评估候选 trajectory 是否执行成功。联合使用 ASR、goal 图片、clip_timestamp_sec 的目标帧与相邻帧、visual_requirements 和 tolerance。\n\nclip_timestamp_sec 是目标状态定位提示，不是逐帧强一致契约；抽到过渡帧、轻微时间漂移或目标秒点未完整展示，只要相邻帧、goal 图片或 ASR 能支持，就只能记 warning，不能单独判 fail。\n\nvisual_requirements.tolerance 是业务明确允许的泛化边界，必须按其字面执行，不得以模型常识推翻。移动端到桌面端、控件形态、配色等差异只要 tolerance 允许就不得判错；若 tolerance 明确说明幻灯片、图标或概念画面代表目标软件/状态，则按该代表关系验收，不要求源视频真实打开软件。\n\nASR 明确口述的动作同样是有效来源，即使画面未完整展示。把口述的“关闭并重开”进一步写成可观察的持久性复查，只要不改变 query 的核心目标，可记 warning 但不能直接 fail。\n\n核心任务方法（例如创建主要内容、输入关键代码、改变关键设置）若在教程、ASR、tolerance 和任务边界中均无依据，却被写成必需操作，必须 fail；非关键失败尝试、重试、等待、清屏或验证动作被过度描述，但不改变目标状态和核心方法时只记 warning。不能因教程起始画面已处于某状态而强制补写更早的环境准备。\n\n必须覆盖每个 task_spec step。只有 warning 且关键提取正确时，status 和对应 step result 必须为 pass，score 应为 2；存在上述核心矛盾或关键证据不足时才为 fail/not_pass。使用 0–3 分并定位 step_id 或视频时间。",
+    "response_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "score",
+        "summary",
+        "confidence",
+        "issues",
+        "findings",
+        "steps"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "summary": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "severity",
+              "message",
+              "target",
+              "step_id",
+              "turn",
+              "screenshot",
+              "video_timestamp_sec"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "error",
+                  "warning",
+                  "info"
+                ]
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "step_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "turn": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "screenshot": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "video_timestamp_sec": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "criterion",
+              "status",
+              "evidence",
+              "locations"
+            ],
+            "properties": {
+              "criterion": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail",
+                  "not_applicable"
+                ]
+              },
+              "evidence": {
+                "type": "string"
+              },
+              "locations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "step_id",
+              "result",
+              "reason"
+            ],
+            "properties": {
+              "step_id": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "not_pass"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "effective_artifacts": [
+      "tutorial",
+      "source_asr",
+      "task_spec"
+    ],
+    "media_artifacts": [
+      "goal_frames",
+      "source_video_frames"
+    ]
+  },
+  {
+    "id": "trajectory_alignment",
+    "original_version": "4.2.0",
+    "effective_version": "4.2.0",
+    "original_digest": "sha256:e414eff928db1f6d91be5e1021c1979d738a7859e9d65ff1ddb4599a72158c48",
+    "effective_digest": "sha256:e414eff928db1f6d91be5e1021c1979d738a7859e9d65ff1ddb4599a72158c48",
+    "original_instructions": "按 trajectory.turns[].step_id 覆盖 task_spec 的所有步骤，并逐步返回 method_match、result_match、result 和 reason；以首个 before_screenshot 作为任务执行边界，边界前已经满足的启动、导航或环境准备不得要求重放。\n\nexpected_method 按语义关键操作核对，不把教程描述中的 wait 数量、焦点点击、滚动次数或平台特有控件外观当成逐动作脚本。若 visual_requirements.tolerance 允许跨端泛化，应以功能等价的方法和状态为准。\n\n结果必须优先由下一轮 before_screenshot、final_screenshot 和 goals 证明；有清晰的前后状态变化及最终状态时，不得仅因动作粒度被归并、应用生命周期动作由环境完成、或低层参数未重复记录而否定已被视觉证据证明的结果。\n\n点击、拖拽、输入、快捷键的目标明显错误、必需参数错误、关键步骤完全缺失、结果未出现或最终状态冲突时必须 fail。轻微冗余、一次成功纠错、等待加载不构成方法失败。\n\ntask_completion 只判断任务要求和最终结果是否达成；Thought 和记录质量由其他维度承担。证据不足按 not_pass 处理，不返回 unknown，并定位 step、turn 和截图。",
+    "effective_instructions": "按 trajectory.turns[].step_id 覆盖 task_spec 的所有步骤，并逐步返回 method_match、result_match、result 和 reason；以首个 before_screenshot 作为任务执行边界，边界前已经满足的启动、导航或环境准备不得要求重放。\n\nexpected_method 按语义关键操作核对，不把教程描述中的 wait 数量、焦点点击、滚动次数或平台特有控件外观当成逐动作脚本。若 visual_requirements.tolerance 允许跨端泛化，应以功能等价的方法和状态为准。\n\n结果必须优先由下一轮 before_screenshot、final_screenshot 和 goals 证明；有清晰的前后状态变化及最终状态时，不得仅因动作粒度被归并、应用生命周期动作由环境完成、或低层参数未重复记录而否定已被视觉证据证明的结果。\n\n点击、拖拽、输入、快捷键的目标明显错误、必需参数错误、关键步骤完全缺失、结果未出现或最终状态冲突时必须 fail。轻微冗余、一次成功纠错、等待加载不构成方法失败。\n\ntask_completion 只判断任务要求和最终结果是否达成；Thought 和记录质量由其他维度承担。证据不足按 not_pass 处理，不返回 unknown，并定位 step、turn 和截图。",
+    "response_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "score",
+        "summary",
+        "confidence",
+        "issues",
+        "findings",
+        "method_match",
+        "result_match",
+        "task_completion",
+        "steps"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "summary": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "method_match": {
+          "type": "boolean"
+        },
+        "result_match": {
+          "type": "boolean"
+        },
+        "task_completion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "result",
+            "reason"
+          ],
+          "properties": {
+            "result": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "not_pass"
+              ]
+            },
+            "reason": {
+              "type": "string"
+            }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "step_id",
+              "method_match",
+              "result_match",
+              "result",
+              "reason"
+            ],
+            "properties": {
+              "step_id": {
+                "type": "string"
+              },
+              "method_match": {
+                "type": "boolean"
+              },
+              "result_match": {
+                "type": "boolean"
+              },
+              "result": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "not_pass"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "severity",
+              "message",
+              "target",
+              "step_id",
+              "turn",
+              "screenshot",
+              "video_timestamp_sec"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "error",
+                  "warning",
+                  "info"
+                ]
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "step_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "turn": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "screenshot": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "video_timestamp_sec": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "criterion",
+              "status",
+              "evidence",
+              "locations"
+            ],
+            "properties": {
+              "criterion": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail",
+                  "not_applicable"
+                ]
+              },
+              "evidence": {
+                "type": "string"
+              },
+              "locations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "effective_artifacts": [
+      "task_spec",
+      "trajectory"
+    ],
+    "media_artifacts": [
+      "goal_frames",
+      "screenshots",
+      "final_state"
+    ]
+  },
+  {
+    "id": "visual_and_sft_quality",
+    "original_version": "4.2.0",
+    "effective_version": "4.2.0",
+    "original_digest": "sha256:a7b042a9993227e68c5006d7a4a2b6a8da66d67b85cc50965c630393a50d0645",
+    "effective_digest": "sha256:a7b042a9993227e68c5006d7a4a2b6a8da66d67b85cc50965c630393a50d0645",
+    "original_instructions": "逐 turn 检查截图加载与焦点、Thought 因果、动作语义和路径质量。Thought 可以用未来式、计划式或条件式描述下一动作及预期结果，例如“执行 X 后应看到 Y”；这属于合法规划，不是未来信息泄露。\n\n只有 Thought 把尚未出现的结果写成当前已经观察到的事实，或给出无法由当前画面、既有历史、task_spec 推导的具体错误文本、数值或状态时，才构成问题；单个 turn 的模板化“已完成”措辞或前瞻性精确输出，在后续结果确实成立且不影响动作选择时记 warning，不阻断。跨多个 turn 系统性提前描述下一画面、据此采取错误动作或与当前截图矛盾时才 fail。\n\n动作类型和关键参数应与目标一致。焦点点击、等待加载、有限滚动和一次成功纠错是正常 GUI 路径；只有持续乱点、无效试探、未清理失败重试、明显错误坐标或动作与截图矛盾才 fail。\n\n低层动作参数缺失时，若有序截图、动作类型和结果足以确定操作对象，不应仅因缺少坐标而拒绝。以首个 before_screenshot 为执行边界，不要求重放边界前已经完成的启动动作。长页面或 Notebook 可由多张有序截图累计证明，不要求单张 final_screenshot 同时容纳全部单元格和输出。\n\n必须覆盖每个 task_spec step。只有 warning 且关键过程、结果正确时 status 和 step result 必须为 pass、score 为 2；系统性因果错位、关键动作错误或结果缺失才 fail/not_pass。2 分及以上达到训练标准。",
+    "effective_instructions": "逐 turn 检查截图加载与焦点、Thought 因果、动作语义和路径质量。Thought 可以用未来式、计划式或条件式描述下一动作及预期结果，例如“执行 X 后应看到 Y”；这属于合法规划，不是未来信息泄露。\n\n只有 Thought 把尚未出现的结果写成当前已经观察到的事实，或给出无法由当前画面、既有历史、task_spec 推导的具体错误文本、数值或状态时，才构成问题；单个 turn 的模板化“已完成”措辞或前瞻性精确输出，在后续结果确实成立且不影响动作选择时记 warning，不阻断。跨多个 turn 系统性提前描述下一画面、据此采取错误动作或与当前截图矛盾时才 fail。\n\n动作类型和关键参数应与目标一致。焦点点击、等待加载、有限滚动和一次成功纠错是正常 GUI 路径；只有持续乱点、无效试探、未清理失败重试、明显错误坐标或动作与截图矛盾才 fail。\n\n低层动作参数缺失时，若有序截图、动作类型和结果足以确定操作对象，不应仅因缺少坐标而拒绝。以首个 before_screenshot 为执行边界，不要求重放边界前已经完成的启动动作。长页面或 Notebook 可由多张有序截图累计证明，不要求单张 final_screenshot 同时容纳全部单元格和输出。\n\n必须覆盖每个 task_spec step。只有 warning 且关键过程、结果正确时 status 和 step result 必须为 pass、score 为 2；系统性因果错位、关键动作错误或结果缺失才 fail/not_pass。2 分及以上达到训练标准。",
+    "response_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "score",
+        "summary",
+        "confidence",
+        "issues",
+        "findings",
+        "steps"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "summary": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "severity",
+              "message",
+              "target",
+              "step_id",
+              "turn",
+              "screenshot",
+              "video_timestamp_sec"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "error",
+                  "warning",
+                  "info"
+                ]
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "step_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "turn": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "screenshot": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "video_timestamp_sec": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "criterion",
+              "status",
+              "evidence",
+              "locations"
+            ],
+            "properties": {
+              "criterion": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail",
+                  "not_applicable"
+                ]
+              },
+              "evidence": {
+                "type": "string"
+              },
+              "locations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "step_id",
+              "result",
+              "reason"
+            ],
+            "properties": {
+              "step_id": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "not_pass"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "effective_artifacts": [
+      "task_spec",
+      "trajectory"
+    ],
+    "media_artifacts": [
+      "screenshots",
+      "final_state"
+    ]
+  },
+  {
+    "id": "record_integrity",
+    "original_version": "4.2.0",
+    "effective_version": "4.2.0-executor-log-waived",
+    "original_digest": "sha256:609bb2d3c9d87b38611db969e53f6fc0b359dd7af73ecec7873974b0b2525c76",
+    "effective_digest": "sha256:5c5ae1d98590cc5a8a7c5a56ebd74260436feac9d6c5646fba11ef8f3e95cc79",
+    "original_instructions": "本维度只检查记录是否真实、连续、可对账，不重复评估 task_spec 提取质量或任务最终完成度。结合确定性检查核对 executor_log 与 trajectory 的动作、次数、参数和顺序；确定性对账已通过时，不得再凭 expected_method 的自然语言动作数量推断日志缺失。\n\nbefore_screenshot 必须是该 turn 动作前画面。Thought 可以描述计划动作和预期结果；单个 turn 的模板化完成措辞或不影响动作的前瞻细节只记 warning，跨多个 turn 系统性把动作后状态当成当前观察、据此采取错误动作或与截图明确矛盾时才 fail。\n\n相邻截图变化应能由动作、等待后的异步加载、应用退出/恢复等正常系统边界解释。只要 executor_log 与 trajectory 一致且前后视觉状态形成合理链路，不得因为 GUI 工具未显式记录系统完成的生命周期细节就直接判断层。\n\n只有精确日志不一致、动作前后截图时序颠倒、无任何动作或系统边界可解释的关键状态跳变、伪造当前观察、或 task_spec 被轨迹改写时才 fail。问题定位到 step、turn、截图或视频时间。\n\n必须覆盖每个 task_spec step。只有 warning 且日志、截图链路可对账时 status 和 step result 必须为 pass、score 为 2；精确对账错误、系统性时序错位或关键证据缺失才 fail/not_pass。",
+    "effective_instructions": "本维度只检查记录是否真实、连续、可对账，不重复评估 task_spec 提取质量或任务最终完成度。结合确定性检查核对 executor_log 与 trajectory 的动作、次数、参数和顺序；确定性对账已通过时，不得再凭 expected_method 的自然语言动作数量推断日志缺失。\n\nbefore_screenshot 必须是该 turn 动作前画面。Thought 可以描述计划动作和预期结果；单个 turn 的模板化完成措辞或不影响动作的前瞻细节只记 warning，跨多个 turn 系统性把动作后状态当成当前观察、据此采取错误动作或与截图明确矛盾时才 fail。\n\n相邻截图变化应能由动作、等待后的异步加载、应用退出/恢复等正常系统边界解释。只要 executor_log 与 trajectory 一致且前后视觉状态形成合理链路，不得因为 GUI 工具未显式记录系统完成的生命周期细节就直接判断层。\n\n只有精确日志不一致、动作前后截图时序颠倒、无任何动作或系统边界可解释的关键状态跳变、伪造当前观察、或 task_spec 被轨迹改写时才 fail。问题定位到 step、turn、截图或视频时间。\n\n必须覆盖每个 task_spec step。只有 warning 且日志、截图链路可对账时 status 和 step result 必须为 pass、score 为 2；精确对账错误、系统性时序错位或关键证据缺失才 fail/not_pass。\n\n本次用户明确豁免：不提供也不评估 executor_log/执行日志。日志存在性、动作日志精确对账、执行次数/参数与独立日志一致性，以及仅能由该日志证明的事实均记 not_applicable，不得因为缺少日志或无法对账而判 fail 或扣分，也不得推断日志已通过。仍严格按上文仓库标准检查可见的动作前画面、Thought 事实性、相邻截图连续性、任务要求是否改写及其他非日志问题。findings 必须明确记录 execution_log_waived 为 not_applicable。本维度结论仅适用于豁免后的记录检查，不等于完整进训门禁通过。",
+    "response_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "score",
+        "summary",
+        "confidence",
+        "issues",
+        "findings",
+        "steps"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "summary": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "severity",
+              "message",
+              "target",
+              "step_id",
+              "turn",
+              "screenshot",
+              "video_timestamp_sec"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "error",
+                  "warning",
+                  "info"
+                ]
+              },
+              "message": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "step_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "turn": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "screenshot": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "video_timestamp_sec": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "criterion",
+              "status",
+              "evidence",
+              "locations"
+            ],
+            "properties": {
+              "criterion": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail",
+                  "not_applicable"
+                ]
+              },
+              "evidence": {
+                "type": "string"
+              },
+              "locations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "step_id",
+              "result",
+              "reason"
+            ],
+            "properties": {
+              "step_id": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "not_pass"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "effective_artifacts": [
+      "task_spec",
+      "trajectory"
+    ],
+    "media_artifacts": [
+      "screenshots",
+      "final_state"
+    ]
+  }
+]

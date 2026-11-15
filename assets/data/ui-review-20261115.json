@@ -1,0 +1,87 @@
+{
+  "reviewed_at": "2026-11-15T09:24:55.193106+00:00",
+  "html_sha256": "252fe5213822b9d2751c7d86a237ceecc80563f933e50feb4b9e4ee169f15854",
+  "script_sha256": "f7ec39b5acb405ecdd00b2514458e61d91caf70d73791b02e7375dbfd183d966",
+  "data_sha256": "219e8729948af537495e52ee6bb87bc5c626b83ce9c6f1cc93688a0a86ef3f9b",
+  "fixed": [
+    "删除对账说明区后产生的空节点innerHTML访问",
+    "默认案例覆盖用户保存的第25题",
+    "导航指向已清空的评测口径区域",
+    "导出快照残留及body级图表提示框造成小屏横向溢出",
+    "全批次统计快捷入口错误保留交叉筛选"
+  ],
+  "source_data_validation": {
+    "human_workflow_exact_matches": 50,
+    "comparison_counts": {
+      "pending": 17,
+      "agree": 21,
+      "diff": 12
+    }
+  },
+  "static_validation": {
+    "duplicate_ids": [],
+    "broken_anchors": [],
+    "missing_declared_local_files": []
+  },
+  "browser_validation": {
+    "console_errors": 0,
+    "default_case": 25,
+    "snapshot_case_preserved": true,
+    "removed_explanation_section_not_restored": true,
+    "dimension_chart_svg_count": 1,
+    "rates": [
+      "63.64%",
+      "48%",
+      "88%"
+    ],
+    "case_filters": {
+      "all": 50,
+      "pass": 24,
+      "not_pass": 26,
+      "incomplete": 6
+    },
+    "comparison_filters": {
+      "agree": 21,
+      "diff": 12,
+      "pending": 17,
+      "field_difference": 16,
+      "focus": 1
+    },
+    "dimension_failure_filters": {
+      "step_extraction": 11,
+      "trajectory_alignment": 22,
+      "visual_and_sft_quality": 19,
+      "record_integrity": 17
+    },
+    "cid_search": {
+      "sample_no": 37,
+      "matches": 1,
+      "human_label": "未提供总体结论"
+    },
+    "case_navigation": [
+      25,
+      26,
+      25
+    ],
+    "evidence": {
+      "image_loaded": true,
+      "source_hash_visible": true,
+      "zoom_200_percent": true,
+      "escape_closes_dialog": true
+    },
+    "global_failed_shortcut_after_diff_filter": {
+      "rows": 26,
+      "comparison_reset": "all"
+    },
+    "desktop": {
+      "viewport": 1440,
+      "document_width": 1440
+    },
+    "mobile": {
+      "viewport": 390,
+      "document_width": 390,
+      "body_tooltip_residue": 0
+    }
+  },
+  "metric_boundary": "一致率按33条overall通过/需改进方向暂计；17条待比较，不代表最终验收一致率。"
+}

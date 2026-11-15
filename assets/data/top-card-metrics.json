@@ -1,0 +1,36 @@
+{
+  "agreement": {
+    "numerator": 21,
+    "denominator": 33,
+    "rate": 0.636364,
+    "display_percent": "63.64%",
+    "pending": 17,
+    "basis": "overall.status的通过/需改进方向对照rubric_result；needs_work仅作为需修正方向",
+    "final_acceptance_agreement": false
+  },
+  "machine_pass": {
+    "numerator": 24,
+    "denominator": 50,
+    "display_percent": "48%",
+    "basis": "机评四个维度均通过"
+  },
+  "task_completion": {
+    "numerator": 44,
+    "denominator": 50,
+    "display_percent": "88%",
+    "basis": "trajectory_alignment.task_completion.result=pass"
+  },
+  "source_data_sha256": "219e8729948af537495e52ee6bb87bc5c626b83ce9c6f1cc93688a0a86ef3f9b",
+  "browser_verification": {
+    "rendered_values": [
+      "63.64%",
+      "48%",
+      "88%"
+    ],
+    "console_errors": 0,
+    "dimension_chart_svg_count": 1,
+    "user_removed_intro_preserved": true,
+    "user_removed_insight_preserved": true,
+    "evidence_modal_opens_with_hash": true
+  }
+}

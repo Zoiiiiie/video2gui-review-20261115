@@ -1,0 +1,797 @@
+[
+  {
+    "sample_no": 1,
+    "scores": [2, 2, 2, 2],
+    "confidence": [0.83, 0.9, 0.92, 0.88],
+    "summaries": ["教程可支持文件读取、分块、seek 和最终标题输出；部分准备及重开细节无时间定位，按非核心扩展记 warning。", "关键读取参数和最终六行带标题内容一致；S6 两次 print 的中间输出被清屏，变量全文由 final 交叉支持。", "逐轮计划与操作总体匹配；T7 对未记录的清屏解释为滚动，是局部措辞问题。", "豁免日志后总体状态链成立；T6 到 T7 存在未记录的视口清空，但全文变量仍有效，没有关键数据跳变。"],
+    "extraction": ["视频 0s/63.922s 从 Python 会话到重新打开文件，cat 未被均匀帧直接捕获，属查看素材的非核心准备。", "127.844s 直接显示 open/read 全文及字面反斜杠。", "191.765s 显示 close/open/x=read/print；末尾空读可由读完状态支持。", "319.609s、383.531s、447.452s 显示逐字读、十字分块与 seek0/4。", "447.452s 显示偏移4读空格；511.374s 为空提示符，重启细节是非核心扩展。", "575.296s、639.217s 显示复位、赋值file及重复打印。", "639.217s、703.139s 显示 The File Contains 标题及六行正文。"],
+    "alignment": ["T2 显示 exit/cat 六行；T1 的终端焦点和命令一致。", "T3 显示 python3/open/read 的完整字符串。", "T4 显示 close/open/x=read/print 及空串。", "T5 展示 T/h/i/s、十字分块和 seek0/4 返回值。", "T6 显示偏移4空格、关闭和解释器重开后open。", "动作含 read/seek0/赋值file/两次print；T7 清屏不再展示两次结果，final仍能打印变量全文，关键存储结果成立。", "final 显示 print(\"The File Contains:\\n\"+file) 及标题六行正文。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "NONCORE_SOURCE_DETAIL", "step_id": "S5", "turn": null, "message": "无 goal/time/ASR，均匀帧未直接支持解释器重启与cat全部细节；核心读取目标有源画面支持。", "video_timestamp_sec": 511.374},
+      {"dimension": 1, "severity": "warning", "code": "INTERMEDIATE_OUTPUT_CLEARED", "step_id": "S6", "turn": 7, "message": "T7为空提示符，两次print的中间输出不可见；final支持同会话file保存全文。"},
+      {"dimension": 2, "severity": "warning", "code": "VIEWPORT_EXPLANATION", "step_id": "S7", "turn": 7, "message": "原生Thought称向上滚动，当前动作记录未体现滚动或清屏；局部视口措辞不影响最终动作。"},
+      {"dimension": 3, "severity": "warning", "code": "VIEWPORT_GAP", "step_id": "S7", "turn": 7, "message": "T6后至T7视口清空，动作中无清屏；final仍证实变量有效，未发现关键数据状态跳变。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  },
+  {
+    "sample_no": 2,
+    "scores": [2, 2, 3, 2],
+    "confidence": [0.94, 0.97, 0.96, 0.91],
+    "summaries": ["教程幻灯片直接提供八行数据、groupby/布尔索引/isin/去重计数两种核心方法；Datetime转换及CSV读回属非核心验证扩展。", "五步方法与输出一致，最终CSV读回包含指定三行；额外默认索引列记warning。", "首次before已有失败历史不属于本轮执行；本轮成功创建DataFrame并完成过滤导出，原生Thought均有当前画面支撑。", "豁免日志后步骤画面按df、users、index、result、CSV顺序连贯；final显示一次额外同结果验证，属冗余。"],
+    "extraction": ["16.827s 给出八条完整记录；依据记录构造df合理，Datetime类型转换是验证扩展。", "33.654s/50.480s 给出groupby apply len>1及唯一True结果。", "100.960s/117.787s 直接说明布尔索引与index。", "134.614s 三行目标结果与指定User_ID/坐标/日期一致。", "168.268s 给出去重/count/isin；50.480s 提及to_csv，路径和读回是落地验证扩展。"],
+    "alignment": ["T2显示八行四列数据且日期时间数值对应。", "T3显示users仅414673119为True，其余五个False。", "T4显示users[users]和Index([414673119])。", "T5显示原索引5/6/7、三条414673119记录。", "final显示去重、counts=3、三行过滤及CSV读回；默认索引形成Unnamed:0额外列，不损失要求数据。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "VALIDATION_EXTENSION", "step_id": "S5", "turn": null, "message": "教程未展示具体输出路径及CSV读回，但导出目标与to_csv有依据，读回属于非核心验证。", "video_timestamp_sec": 168.268},
+      {"dimension": 1, "severity": "warning", "code": "EXTRA_CSV_INDEX", "step_id": "S5", "turn": 5, "message": "final CSV读回包含Unnamed:0默认索引列；四个要求列和三行数据完整，任务未显式禁止索引列。"},
+      {"dimension": 3, "severity": "warning", "code": "REDUNDANT_VERIFICATION", "step_id": "S5", "turn": 5, "message": "final有两段相同去重计数/导出验证内容；未出现关键状态冲突，独立日志次数对账已豁免。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "source-01.jpg", "source-02.jpg"]
+  },
+  {
+    "sample_no": 3,
+    "scores": [2, 1, 1, 1],
+    "confidence": [0.93, 0.99, 0.99, 0.99],
+    "summaries": ["源视频支持六种声明的最终变量名、数值及顺序；全选的源时点未直接捕获，属于非核心展示动作。", "最终六行代码与全选结果正确，但S2至S5输入内容使用不同变量名且重复裸类型，不符合必需参数；结果成功不能消除关键方法记录冲突。", "T3至T6系统性把截图中的dick/sb/slow/nmdbrrc描述成num/floatVal/doubleVal/charVal；多次关键输入与画面矛盾，不达训练标准。", "豁免日志后仍有直接可见的跨轮当前观察伪称与动作到后图的变量名跳变；不能以日志豁免消除非日志冲突。"],
+    "extraction": ["10.016s/15.023s 显示int sum=12。", "15.023s/20.031s 显示short dick=1。", "30.047s 显示float sb=0.3211312312f。", "45.070s 显示double slow=9.d。", "50.078s 显示char nmdbrrc='1'。", "55.085s 显示String dsb数字文本；全选未被该帧捕获，属于非核心展示动作。"],
+    "alignment": ["T2显示int sum=12，与点击行尾输入一致。", "T2后动作输入short num=1，T3却显示short dick=1；必需变量名冲突且已有short行尾并未记录替换。", "T3后动作输入float floatVal，T4却为float sb；关键名称及输入方式冲突。", "T4后动作输入double doubleVal，T5却为double slow；关键名称冲突。", "T5后动作输入char charVal，T6却为char nmdbrrc；关键名称冲突。", "T6动作确实输入dsb数字串并Ctrl+A，final六行声明和选中高亮成立。"],
+    "method_fail": ["S2", "S3", "S4", "S5"], "result_fail": [], "quality_fail": ["S2", "S3", "S4", "S5", "S6"], "record_fail": ["S2", "S3", "S4", "S5", "S6"],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "FINAL_SELECTION_SOURCE", "step_id": "S6", "turn": null, "message": "55.085s仍在编辑String；全选源证据未被均匀帧直接捕获，属非核心展示扩展。", "video_timestamp_sec": 55.085},
+      {"dimension": 1, "severity": "error", "code": "KEY_INPUT_CONFLICT", "step_id": "S2", "turn": 2, "message": "输入short num=1而T3显示short dick=1；S3-S5同样为floatVal/doubleVal/charVal与sb/slow/nmdbrrc的冲突。"},
+      {"dimension": 2, "severity": "error", "code": "SYSTEMATIC_FALSE_OBSERVATION", "step_id": "S3", "turn": 3, "message": "T3称当前short num，图为dick；T4/T5/T6继续把sb/slow/nmdbrrc称为floatVal/doubleVal/charVal，跨多轮关键观察错误。"},
+      {"dimension": 3, "severity": "error", "code": "ACTION_IMAGE_NAME_JUMP", "step_id": "S4", "turn": 4, "message": "S2-S5记录的关键变量名与下一张before不一致，没有可见的替换或恢复动作；此为直接图文冲突，不依赖执行日志。"},
+      {"dimension": 3, "severity": "error", "code": "FALSE_CURRENT_NAME", "step_id": "S6", "turn": 6, "message": "T6称当前char charVal，实际before为char nmdbrrc；本轮计划String strVal但实际输入dsb。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 4,
+    "scores": [2, 2, 2, 1],
+    "confidence": [0.91, 0.98, 0.94, 0.98],
+    "summaries": ["源视频支持TextEdit编写、另存ab.java、两次错误编译、Public改public和成功javac/java；启动、cat复查等辅助细节按warning。", "十步关键操作与结果均实现；自动大小写修正、保存位置一次纠错与查找替换成功不构成方法失败。", "截图和本轮Thought总体匹配，有限重试均完成恢复；T2空白措辞及T10前两次点击说法有局部偏差。", "T23至T24只记录激活TextEdit，却将两行关键修饰符Public变成Ppplbc/Ppblic；缺少可解释代码变化，且Thought承认残留错误拼写，构成非日志关键状态跳变。"],
+    "extraction": ["0s桌面到39.147s富文本Untitled；启动细节未定位，不改变目标。", "39.147s有标尺，78.294s输入纯文本代码，模式切换有前后支持。", "78.294s/117.442s/156.589s支持大写Public四行代码和字符串。", "156.589s编辑代码，195.736s完成另存；coffee.java保存是后续编译必需准备。", "195.736s/234.883s标题ab.java且正文不变。", "234.883s终端cd desktop与新提示符。", "352.325s累计显示ab.java两条错误。", "274.031s重命名面板、313.178scoffee.java、352.325s两条错误。", "352.325s/391.472s小写public与无错误javac、coffee.class。", "430.619s输入java coff…且源码及class已存在；cat和重复javac是非核心验证扩展。"],
+    "alignment": ["T2已显示Untitled4富文本窗口，Spotlight启动按功能实现。", "T3菜单/T4确认/T5无标尺空白，模式切换成立。", "T6代码被自动修正为YouTube，经T7替换，T8四行正确。", "T9-T12选择Desktop，T13标题及图标coffee.java。", "T14命名面板到T15 ab.java文档及桌面图标。", "T16终端启动，T17 cd desktop成功。", "T18清楚显示javac ab.java、两条错误及2 errors。", "T19-T22另存覆盖，T23 javac coffee.java两条错误。", "T24-T29全选重写/替换修饰符并保存，T30无错误编译及coffee.class。", "T31/final java coffee输出Hello youtube!、cat最终小写源码及无错再次javac，拖动后源码和两文件可见。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": ["S9"],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "AUXILIARY_VERIFICATION", "step_id": "S10", "turn": null, "message": "均匀帧430.619s正在输入运行命令；cat复查和再次编译为非核心验证描述，未改变源码及运行目标。", "video_timestamp_sec": 430.619},
+      {"dimension": 1, "severity": "warning", "code": "SUCCESSFUL_GUI_CORRECTION", "step_id": "S9", "turn": 27, "message": "自动大小写导致Public/YouTube，最终查找替换恢复为public/youtube并编译运行成功。"},
+      {"dimension": 2, "severity": "warning", "code": "LOCAL_HISTORY_WORDING", "step_id": "S4", "turn": 10, "message": "Thought称前两次点击偏上，所给本段仅有一次Where错误点击；随后准确点击纠正。"},
+      {"dimension": 3, "severity": "error", "code": "UNEXPLAINED_CODE_EDIT", "step_id": "S9", "turn": 24, "message": "T23仅点击Dock激活应用，T24 coffee.java的Public已变成Ppplbc/Ppblic；两处关键源码编辑不在相邻动作中且不能由窗口激活解释。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "trajectory-05.jpg", "trajectory-06.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 5,
+    "scores": [2, 3, 2, 2],
+    "confidence": [0.98, 0.98, 0.94, 0.92],
+    "summaries": ["教程直接展示五段核心代码、参数与0.10/0/1/[1,1,1]/0.50输出；拆为五个独立脚本是非核心包装扩展。", "五段脚本参数和真实终端输出逐项对应；S2窗口关闭由环境完成不否定运行结果。", "本轮代码、焦点与输出总体准确；T6关于已经修复缩进错误的历史细节缺少所给轨迹依据，属局部warning。", "豁免日志后有序状态和代码结果成立；S2未展示中间报错/修复/清屏且Thought提及该历史，记局部warning，未看到关键参数跳变。"],
+    "extraction": ["66.353s/99.530s显示30样本3少数类、ratio代码及0.10。", "132.707s显示train_test_split test_size0.2/shuffleFalse和输出0。", "165.884s/199.060s显示SSS n_splits1/test_size0.2/random_state0和输出1。", "232.237s/265.414s显示SKF n_splits3/shuffleTrue/random_state0和[1,1,1]。", "298.591s/331.767s/364.944s显示most_frequent Dummy、balanced_accuracy_score和0.50。"],
+    "alignment": ["T3编辑器代码与方法一致，T4终端minority_ratio=0.10。", "T5输入普通划分代码并保存，T7真实运行naive_test_minority=0。", "T9展示分层随机划分代码，T10真实输出strat_test_minority=1。", "T12展示三折代码，T13真实输出kfold_minorities=[1,1,1]。", "T15展示Dummy/分层/平衡准确率代码，final真实输出baseline_bal_acc=0.50。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "SCRIPT_PACKAGING_EXTENSION", "step_id": "S1", "turn": null, "message": "教程是连续代码片段演示，task_spec扩展为五个独立脚本并指定文件名/路径；代码和关键参数不变。", "video_timestamp_sec": 66.353},
+      {"dimension": 2, "severity": "warning", "code": "UNSUPPORTED_LOCAL_HISTORY", "step_id": "S2", "turn": 6, "message": "Thought称先前缩进报错已清除、脚本已修正；本段没有该报错与修复，但下一轮输出确实正确，未据此选择错误动作。"},
+      {"dimension": 3, "severity": "warning", "code": "AUXILIARY_HISTORY_GAP", "step_id": "S2", "turn": 6, "message": "T5保存后T6回到清空终端，Thought提及中间缩进修复；未展示关键参数冲突，应用关闭与清屏辅助边界记warning。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 6,
+    "scores": [2, 3, 2, 2],
+    "confidence": [0.97, 0.99, 0.96, 0.94],
+    "summaries": ["教程完整支持纯张量SGD、五步循环及八个检查点；S4方法的b=0.8443与其goal/源视频0.843有非核心精度笔误。", "七行准备、201epoch、更新前打印与八组数值均由代码和Shell证实，最终loss0.3530/w1.994/b0.843。", "代码与结果清楚，等待和窗口宽度/焦点纠正合理；T9提前叙述即将执行的右移核对，为局部前瞻措辞。", "豁免日志后代码、保存、运行和检查点状态链成立；T9提前完成式描述列号变化为局部warning，未影响动作。"],
+    "extraction": ["116.825s明确给出随机种子、12点、零张量梯度及SGD lr0.01；IDLE保存为脚本是包装。", "155.767s/194.709s支持五步顺序；233.650s epoch0 loss29.9603；打印检查点不改变训练方法。", "311.534s列出epoch5 loss8.0094与epoch10 loss2.3349；中期参数由图形拟合/既定程序支持。", "272.592s最终w1.994/b0.843、311.534s全loss序列、350.476s不足1%收敛解释；方法b0.8443笔误不改变目标goal0.843。"],
+    "alignment": ["T3七行准备代码；T6task_assets保存面板/T7文件名正确。", "T8/T14完整五步循环与更新前检查点print；T12Shell首行29.9603/0/0。", "T13/T16/final epoch5 loss8.0094、epoch10 loss2.3349/w1.499/b0.570。", "T16/final五条后续loss为0.4885/0.3562/0.3545/0.3538/0.3530，最终w1.994/b0.843，无Traceback且返回>>>。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "PARAMETER_READING_TYPO", "step_id": "S4", "turn": null, "message": "S4-3写b=0.8443，而query/goal和源视频都是0.843；属于复查描述精度笔误，核心训练参数与目标未改变。", "video_timestamp_sec": 272.592},
+      {"dimension": 2, "severity": "warning", "code": "LOCAL_ANTICIPATORY_WORDING", "step_id": "S2", "turn": 9, "message": "before状态栏Col0，Thought提前称右移五次后Col5；动作随后确实右移五次，T10Col5，局部前瞻不影响选择。"},
+      {"dimension": 3, "severity": "warning", "code": "LOCAL_BEFORE_AFTER_WORDING", "step_id": "S2", "turn": 9, "message": "同一Thought混用当前Col0和动作后Col5；后图证实核对结果，未见系统性时序错位。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 7,
+    "scores": [2, 3, 3, 3],
+    "confidence": [0.96, 0.99, 0.99, 0.97],
+    "summaries": ["源教程明确提供egrep和grep -E同一多关键词管道；任务把源机三行结果具体化为本机两行，属于环境输出适配warning。", "终端启动、两条精确命令、相同两行结果均有画面证实。", "三个turn原生观察与画面一致，输入参数正确、无无效试探。", "豁免日志后桌面到终端及两次搜索状态链合理；没有关键时序或当前观察冲突。"],
+    "extraction": ["教程以终端命令结果截图说明任务；启动GNOME Terminal属于非核心环境适配。", "22.875s及45.751s直接提供cat /etc/fstab | egrep 'root|defaults'。", "22.875s及50.326s直接提供grep -E等效命令及与egrep一致的输出；本机两行替代源机三行明确标为本机。"],
+    "alignment": ["T1桌面经CtrlAltT，T2空shell提示符。", "T3显示egrep正确管道、UUID/ext4 defaults和tmpfs defaults两行。", "final显示grep -E正确管道并再次输出相同两行，命令后返回提示符。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [{"dimension": 0, "severity": "warning", "code": "HOST_OUTPUT_ADAPTATION", "step_id": "S2", "turn": null, "message": "源教程fstab匹配三行，task_spec明确要求本机UUID和tmpfs两行；核心正则与管道一致，属本机输出适配。", "video_timestamp_sec": 45.751}],
+    "reviewed_sheets": ["trajectory-01.jpg", "source-01.jpg", "source-02.jpg"]
+  },
+  {
+    "sample_no": 8,
+    "scores": [3, 3, 2, 2],
+    "confidence": [0.99, 0.99, 0.96, 0.96],
+    "summaries": ["教程直接列出四个system_profiler重定向命令及stdout/stderr/覆盖/追加语义，四步提取正确。", "四种重定向均执行，实际ls/head/cat证明报告写入、stderr134字节与追加保留原错误前缀。", "13轮焦点和运行/等待观察准确；T1在没有文件检查时声称file.txt不存在为局部未证实断言。", "豁免日志后命令、进程等待、文件大小与内容链连贯；初始文件不存在仅是未证实的局部前提，不影响覆盖操作。"],
+    "extraction": ["15.340s/23.010s明确system_profiler > file.txt并说明只重定向stdout。", "23.010s/38.350s明确&>与两个输出流合并。", "46.020s/53.691s明确2>只重定向标准错误。", "53.691s/61.361s明确>>追加且不擦除旧内容。"],
+    "alignment": ["T2/T3命令结束无stdout报告、stderr仍在屏幕；T4 ls大小3372274和head报告。", "T5进程运行无新增输出，T6返回；T7新文件大小3372263和head报告。", "T8/T9屏幕系统报告，T10ls为134字节，T11cat仅两条Info.plist错误。", "T12/T13仅stderr在屏幕，final大小3373839且head前两行保留原stderr后接Accessibility，追加结果成立。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 2, "severity": "warning", "code": "UNVERIFIED_INITIAL_FILE_STATE", "step_id": "S1", "turn": 1, "message": "空shell无法证明主目录没有file.txt；该初始存在性断言缺少检查，但>覆盖动作不依赖它。"},
+      {"dimension": 3, "severity": "warning", "code": "UNSUPPORTED_INITIAL_EXISTENCE", "step_id": "S1", "turn": 1, "message": "Thought断言file.txt不存在，既有画面未展示目录查询；后续实际ls/head/cat均可核对，未形成系统性伪造。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 9,
+    "scores": [3, 3, 3, 3],
+    "confidence": [0.99, 0.99, 0.98, 0.97],
+    "summaries": ["源视频直接支持root登录、空密码linux@localhost、全库权限含grant option及flush，四步提取正确。", "登录与三条SQL关键参数一致，全部Query OK及最后空提示符可见。", "原生Thought逐轮描述当前成功结果后规划下一条SQL，焦点与输入正确。", "豁免日志后SQL状态链连续；登录欢迎画面证明成功，不因未单列空密码回车而否定结果。"],
+    "extraction": ["7.315s输入mysql -uroot，14.630s出现-p/password及欢迎横幅。", "43.891s完整create user linux@localhost identified by ''和Query OK。", "73.151s完整grant all privileges on *.*及with grant option、Query OK。", "80.466s显示flush privileges与Query OK及空提示符。"],
+    "alignment": ["T2显示mysql -uroot -p、Enter password及MariaDB欢迎横幅。", "T3显示空密码linux@localhost创建和Query OK。", "T4显示全库所有权限with grant option及Query OK。", "final按顺序显示三条SQL成功回显，末尾MariaDB[(none)]>。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [],
+    "reviewed_sheets": ["trajectory-01.jpg", "source-01.jpg", "source-02.jpg"]
+  },
+  {
+    "sample_no": 10,
+    "scores": [3, 1, 1, 1],
+    "confidence": [0.99, 1.0, 1.0, 1.0],
+    "summaries": ["八个原始goal、指定时点与邻帧支持建库/建表/三次插入/EXPLAIN，结果值与容忍范围一致。", "最终三条记录及EXPLAIN ALL/rows3/Using where正确，但S6重复建表、S7插入john_doe、S8插入bob，关键方法与所标步骤冲突。", "S6-S8原生计划正确，实际动作却系统性执行不同SQL；截图成功不能使错误语义动作达到训练标准。", "T6动作重复建表却T7出现alice插入成功，T7动作john_doe却T8出现bob，T8动作bob却final出现EXPLAIN；三处关键状态无法由所记动作解释。"],
+    "extraction": ["goal17.7s及邻帧16.95s登录欢迎信息；版本/connection id差异在tolerance内。", "goal20.5s及21.25s建库Query OK,1 row affected。", "goal23.6s及24.35s USE/tutorials/Database changed。", "goal33.2s及33.95s三列类型、主键自增与Query OK,0 rows affected。", "goal40.3s及41.05s john_doe/john@example.com成功插入。", "goal46.3s及45.55s/47.05s alice/alice@example.com成功插入，底部下一条开头在tolerance内。", "goal51.6s及50.85s/52.35s三条成功记录和干净提示符。", "goal65s及64.25s/65.75s/66.936s完整执行计划1/SIMPLE/users/ALL/四个NULL/3/Using where。"],
+    "alignment": ["T2登录arashtad成功，版本11.6.2在容忍范围内。", "T3建库Query OK,1 row affected。", "T4 USE/tutorials与Database changed。", "T5三列建表成功。", "T6 john_doe成功插入。", "T6实际动作CREATE TABLE users，而T7显示alice插入成功；必需SQL缺失且动作错误，结果图存在。", "T7实际动作插入john_doe，而T8显示bob插入成功；必需用户名参数错误，结果图存在。", "T8实际动作插入bob，final却显示EXPLAIN结果；EXPLAIN关键方法缺失，final目标值全部正确。"],
+    "method_fail": ["S6", "S7", "S8"], "result_fail": [], "quality_fail": ["S6", "S7", "S8"], "record_fail": ["S6", "S7", "S8"],
+    "issues": [
+      {"dimension": 1, "severity": "error", "code": "WRONG_SQL_FOR_STEP", "step_id": "S6", "turn": 6, "message": "S6要求alice INSERT，动作却重复CREATE TABLE users；S7要求bob却INSERT john_doe，S8要求EXPLAIN却INSERT bob。"},
+      {"dimension": 2, "severity": "error", "code": "SYSTEMATIC_ACTION_PLAN_CONFLICT", "step_id": "S7", "turn": 7, "message": "S6-S8原生Thought规划alice/bob/EXPLAIN，实际动作分别为建表/john_doe/bob，跨三步关键语义不符。"},
+      {"dimension": 3, "severity": "error", "code": "UNEXPLAINED_ALICE_INSERT", "step_id": "S6", "turn": 6, "message": "重复建表动作不能生成T7显示的alice插入语句和Query OK。"},
+      {"dimension": 3, "severity": "error", "code": "UNEXPLAINED_BOB_INSERT", "step_id": "S7", "turn": 7, "message": "插入john_doe动作不能生成T8的bob插入成功状态。"},
+      {"dimension": 3, "severity": "error", "code": "UNEXPLAINED_EXPLAIN_RESULT", "step_id": "S8", "turn": 8, "message": "插入bob动作不能生成final中的EXPLAIN SQL、执行计划表与1 row in set。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "goals-01.jpg", "goals-02.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg", "source-05.jpg", "source-06.jpg"]
+  }
+,
+  {
+    "sample_no": 11, "scores": [3, 3, 3, 3], "confidence": [0.98, 0.99, 0.99, 0.98],
+    "summaries": ["源视频明确支持相邻去重的8到5行及全部去重的4行，关键文本和菜单语义一致。", "两次通过Edit/Line Operations执行对应命令，T4五行和final四行与目标逐字对应。", "六轮当前观察、选区、键盘导航与动作及后图一致。", "豁免独立日志后，相邻画面从8行到5行到4行，选区和菜单状态均可由动作解释。"],
+    "extraction": ["85.381s显示目标8行，94.867s和104.354s显示相邻去重后5行及原理说明。", "28.460s原始重复示例与37.947s四行首次出现顺序，以及104.354s对全部去重命令的说明支持本步。"],
+    "alignment": ["T1/T2八行全选、T3菜单第三项经down两次Enter，T4为1/2/3/4/1五行。", "T5五行全选、T6菜单第二项经down一次Enter，final仅1/2/3/4四行且无菜单遮挡。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [], "issues": [],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 12, "scores": [2, 1, 2, 2], "confidence": [0.93, 0.98, 0.96, 0.95],
+    "summaries": ["教程支持六类快捷键及最终重复链接；部分精确按键次数和中间列号缺少均匀帧直接定位，按局部warning。", "快捷键类别和剪切/撤销/复制核心行为正确，最终两行链接与44行光标成立；S2至S5明确要求的列号多次不符，无容忍条款。", "原生Thought多数准确识别真实列号并完成操作；T4复用上步计划、T13称相反滚动却仍down为局部偏差。", "逐字符、按词与剪切复制状态链成立；局部滚动方向解释错误，未发生源码无动作变化。"],
+    "extraction": ["21.057s当前41行Col6及后续42行支持跨行导航；精确终点需更细时点定位。", "31.585s短空行Col1、42.114s长行Col18支持列保持。", "52.642s/63.171s为42行Col3，且有Command左叠加提示；按词边界的精确39列未被均匀帧捕获。", "73.699s为Col5、84.227s为Col3，方向键叠加提示支持单字符往返。", "94.756s剪切后链接消失与CommandX，105.284s恢复且Col10，支持剪切/撤销。", "105.284sCommandC与115.813s两行链接及44行Col1支持复制粘贴；后按down是辅助定位扩展。"],
+    "alignment": ["T1四down、T2上下后五right，T3为42行Col6。", "T3十二right及上下跨行执行，但T4为41行Col14，而目标Col12。", "T4-T7按词往返正确，T8为42行Col5而目标Col3；行尾T6为41而目标39。", "T8执行两组right/right/left/left，T9仍Col5而目标Col3。", "T10整行消失，T11撤销恢复；光标Col5而目标Col10。", "T11CommandC/down/CommandV，T12已为44行Col1，final完整显示两条链接及后续行号；49行额外空白导致列表项在50行，核心末尾52/53行正确。"],
+    "method_fail": [], "result_fail": ["S2", "S3", "S4", "S5", "S6"], "quality_fail": [], "record_fail": [],
+    "task_completion": "pass", "completion_reason": "query要求的导航练习、剪切撤销与最终42/43行重复链接及44行Col1已实现；单步严格goal列号及列表项行号仍不通过。",
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "PRECISE_INTERMEDIATE_SOURCE", "step_id": "S3", "message": "按词操作核心有来源，精确Col39及各跳转次数未由均匀源帧直接呈现。", "video_timestamp_sec": 63.171},
+      {"dimension": 1, "severity": "error", "code": "CURSOR_COLUMN_MISMATCH", "step_id": "S2", "turn": 4, "message": "T4光标41行Col14，goal要求Col12；S3/S4终点Col5而要求Col3，S5撤销终点Col5而要求Col10。"},
+      {"dimension": 1, "severity": "error", "code": "LIST_ITEM_LINE_MISMATCH", "step_id": "S6", "turn": 13, "message": "final的49行为空、50行为li、51行/ul；goal要求49行li及50行/ul。42/43链接与44行Col1及52/53闭合标签正确。"},
+      {"dimension": 2, "severity": "warning", "code": "REUSED_PRIOR_PLAN", "step_id": "S3", "turn": 4, "message": "T4 Thought仍描述上步跨行导航，而动作已执行down/Command左/Option右；其他轮有准确按词计划。"},
+      {"dimension": 2, "severity": "warning", "code": "SCROLL_DIRECTION_WORDING", "step_id": "S6", "turn": 13, "message": "T13称相反方向滚动，但两轮记录均down；最终视口已正确恢复。"},
+      {"dimension": 3, "severity": "warning", "code": "SCROLL_DIRECTION_WORDING", "step_id": "S6", "turn": 13, "message": "滚动方向的口述和记录有局部矛盾；未发现文本关键状态跳变。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 13, "scores": [3, 1, 1, 2], "confidence": [0.99, 0.97, 0.99, 0.91],
+    "summaries": ["三个真实goal与目标相邻帧完整支持employee声明、HTML三绑定及浏览器渲染。", "两个代码文件和三行最终值正确，但S3持续明显错误坐标和不存在地址栏的操作，直到T15重新启动恢复，不是一次局部纠错。", "T5/T8同一错误按钮坐标反复切到Edge；T11-T14把无地址栏的登录受限窗口当普通浏览器，持续无效试探，不达训练标准。", "代码与输出形成有序状态链，浏览器切换可由错误点击及启动边界解释；HTML动作的实体转义与截图标签存在表示层不确定性，记warning。"],
+    "extraction": ["108.5s及107.75/109.25s完整显示Mark/David/Male与scope赋值，14行。", "196.5s及197.25s含三个div和绑定、原head引用，33行；195.75s补全尚未关闭仅过渡。", "220s及219.25/220.75s浏览器真实file页面显示三行指定值。"],
+    "alignment": ["T2完整14行、控制器内对象和scope赋值已保存。", "T3显示33行、三个绑定与head引用完整；全选重写仍保留要求内容。", "T5/T8错误按钮点击导致Edge前台、T11-T14操作不存在的地址栏；T15重启普通Chrome，T16/final显示三行真实值与正确本地路径。"],
+    "method_fail": ["S3"], "result_fail": [], "quality_fail": ["S3"], "record_fail": [], "task_completion": "pass",
+    "completion_reason": "两个保存文件的字段和绑定正确，普通Chrome最终解析并显示First Name : Mark、Last Name : David、Gender : Male。",
+    "issues": [
+      {"dimension": 1, "severity": "error", "code": "PERSISTENT_WRONG_TARGET", "step_id": "S3", "turn": 8, "message": "T5/T8按钮坐标落任务栏并打开Edge；T11-T14登录受限窗口无地址栏仍连续尝试导航，T15才恢复。"},
+      {"dimension": 2, "severity": "error", "code": "SYSTEMATIC_UI_MISIDENTIFICATION", "step_id": "S3", "turn": 12, "message": "受限登录窗口无标签栏/地址栏，T11-T14连续错误识别和无效操作；T5/T8重复错误坐标亦未及时修正。"},
+      {"dimension": 3, "severity": "warning", "code": "ACTION_TEXT_ENCODING_AMBIGUITY", "step_id": "S2", "turn": 2, "message": "动作文本HTML标签使用&lt;/&gt;，截图为实际标签，存在导出表示层歧义；未据此推断原执行输入字面实体或伪造，需保留原动作来源核实。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "goals-01.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg"]
+  }
+,
+  {
+    "sample_no": 14, "scores": [2, 3, 2, 2], "confidence": [0.96, 0.99, 0.95, 0.92],
+    "summaries": ["源视频展示创建文件、props组件、三次挂载与浏览器结果；npm命令细节未展示，但运行项目有明确字幕，属非核心落地扩展。", "四步方法和结果正确，两个代码文件及localhost三条欢迎标题有真实画面支持。", "短暂右键纠错和加载等待合理；T5提及已关闭面包屑菜单的局部历史未展示。", "文件、组件、App、服务器和渲染状态连续；动作文本实体转义/分隔键名属于表示层歧义，独立精确参数对账已豁免。"],
+    "extraction": ["9.473s组件文件夹NewFile菜单、14.210s已打开Welcome.jsx，支持创建。", "23.684s至33.157s支持function Welcome(props)、h1 props.name和默认导出。", "42.631s第一元素、47.367s完整三元素和导入。", "42.631s字幕NOW RUN OUR PROJECT、52.104s localhost5173及三条目标标题；具体npm运行未画面展示，辅助扩展。"],
+    "alignment": ["T3正确文件夹菜单，T4新文件打开为空。", "T5显示function Welcome(props)、h1 Welcome/props.name及export，已保存。", "T7 App显示导入及Iron Coding/John/Ajay三元素。", "T8真实npm/Vite Local5173，T9/T10正常初始化，final三条一级标题及localhost5173。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "RUN_COMMAND_EXTENSION", "step_id": "S4", "message": "教程给出运行项目字幕和localhost结果，未直接显示npm run dev命令；该扩展不改变核心组件任务。", "video_timestamp_sec": 42.631},
+      {"dimension": 2, "severity": "warning", "code": "LOCAL_HISTORY_WORDING", "step_id": "S3", "turn": 5, "message": "T5称面包屑菜单已关闭，T4后记录中未出现该菜单；当前组件代码与后续切文件正确。"},
+      {"dimension": 3, "severity": "warning", "code": "ACTION_TEXT_ENCODING_AMBIGUITY", "step_id": "S2", "turn": 4, "message": "标签动作含&lt;/&gt;且键名为分隔字母，画面代码正确；保留原导出表示歧义，不据此推断实际执行字面错误。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 15, "scores": [1, 1, 1, 1], "confidence": [0.99, 0.99, 0.99, 0.99],
+    "summaries": ["教程支持文件名/内容/权限实验，但task_spec四处关键固定MD5抄错，不能满足逐字结果要求。", "最终实验概念和内容正确；S3动作land与必须landed不同，S4/S6/S8/S9目标哈希与实际值不符。", "T9/T11/T13跨轮将实际MD5描述为task_spec错误MD5，关键具体数值观察系统性错误。", "S3输入land而后图landed且哈希对应后者，存在无法由动作解释的关键文本差异；多轮伪称当前哈希。"],
+    "extraction": ["192.407s已在Kali终端输入文本；启动/最大化为非核心准备。", "主public创建未被均匀帧直接捕获，但与后续覆盖实验相关，为非核心前置。", "192.407s与288.611s支持完整landed句子和secret到public验证。", "288.611s真实哈希963dc5e60501af4f8e508457c8e36324，task写963dc5e69b501af48e508457c8e36324。", "288.611s显示mv/ls/cat public且secret已消失。", "336.712s两个名称同哈希963dc5e60501af4f8e508457c8e36324，task抄错。", "384.814s明确echo Big Success与两行cat。", "481.018s真实新哈希e4c52b7751a4619b65f78dcc4bc9eb8d，task写e4c52b7751a4619b65f7d8cc4bc9eb8d。", "481.018s权限rw到rwx且真实基线e4c52b7751a4619b65f78dcc4bc9eb8d；529.119s字幕支持权限不改变哈希，task固定值抄错。"],
+    "alignment": ["T1失败搜索后T2/T3成功启动，T5空提示符最大化。", "T6命令正确、T7无错返回。", "T7动作输入land而T8/cat实际landed，违反必须句子参数。", "T9两次真实MD5为963dc5e60501af4f8e508457c8e36324，goal不符。", "T10 mv/ls/cat正确，完整landed句子不变。", "T11改名前后哈希一致但均非goal固定值。", "T12正确显示两行文本和Big Success。", "T13真实新哈希e4c52b7751a4619b65f78dcc4bc9eb8d，非goal固定值。", "final权限rw到rwx、大小128且修改前后真实MD5相同，非goal固定值。"],
+    "extraction_fail": ["S4", "S6", "S8", "S9"], "method_fail": ["S3"], "result_fail": ["S4", "S6", "S8", "S9"], "quality_fail": ["S5", "S7", "S9"], "record_fail": ["S3", "S5", "S7", "S9"],
+    "task_completion": "pass", "completion_reason": "最终画面完成query要求的重命名、追加、chmod对比实验，真实MD5正确支持结论；单步错误固定哈希与过程记录不通过。",
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "SOURCE_HASH_TRANSCRIPTION", "step_id": "S4", "message": "源视频MD5为963dc5e60501af4f8e508457c8e36324；S4/S6抄错，S8/S9亦将真实e4c52b7751a4619b65f78dcc4bc9eb8d抄错。", "video_timestamp_sec": 288.611},
+      {"dimension": 1, "severity": "error", "code": "KEY_TEXT_PARAMETER_MISMATCH", "step_id": "S3", "turn": 7, "message": "动作英文为to land on而要求to landed on；后图却为landed。"},
+      {"dimension": 1, "severity": "error", "code": "EXACT_HASH_GOAL_MISMATCH", "step_id": "S9", "turn": 13, "message": "S4/S6/S8/S9真实哈希不满足task_spec的逐字固定值；实际MD5计算本身正确。"},
+      {"dimension": 2, "severity": "error", "code": "SYSTEMATIC_FALSE_HASH_OBSERVATION", "step_id": "S5", "turn": 9, "message": "T9/T11/T13跨轮称实际哈希为task_spec错误值，与各自before明确冲突。"},
+      {"dimension": 3, "severity": "error", "code": "ACTION_CONTENT_JUMP", "step_id": "S3", "turn": 7, "message": "输入land到T8显示landed，没有替换动作；计算证实land应为8fb6486f9c2126c0c74bac61d74dea6f，图中MD5对应landed。"},
+      {"dimension": 3, "severity": "error", "code": "FALSE_CURRENT_HASH", "step_id": "S9", "turn": 13, "message": "T9/T11/T13多轮当前MD5伪称，属于直接图文冲突，不依赖独立执行日志。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 16, "scores": [1, 1, 1, 1], "confidence": [0.74, 0.98, 0.98, 0.98],
+    "summaries": ["可读取后半源帧支持modules与S5-S8；source-01图像工具拒绝处理，S2-S4核心来源未能视觉核实，按证据不足。S1从msf直接cd未包含退出操作。", "七类目录结果均成立且条目版本增删获允许；S1记录在msf提示符输入cd而没有关键exit，后图却为已退出shell。", "T1 Thought计划exit但动作完全没有exit；其余七轮目录观察与操作一致。", "T1 before为msf，T2图出现exit与shell cd；退出指令不在动作中，是直接关键状态链缺口。"],
+    "extraction": ["148.270s源帧保留modules顶层ls及七类/README；task步骤在msf中cd未包含退出，关键上下文不完整。", "source-01处理被图像工具拒绝，本步辅助分类未在可读取source-02呈现，无法视觉核实。", "source-01处理被图像工具拒绝，本步编码器分类未在可读取source-02呈现，无法视觉核实。", "source-01处理被图像工具拒绝，本步空evasion未在可读取source-02呈现，无法视觉核实。", "148.270s源帧显示cd exploits/ls及平台/示例文件。", "172.982s源帧显示cd nops/ls与架构条目。", "197.694s源帧显示payloads内adapters/singles/stagers/stages。", "222.406s源帧显示post路径与平台目录。"],
+    "alignment": ["T1动作无exit、before是msf；T2后图显式出现exit及shell cd/ls，顶层结果正确。", "T3 auxiliary路径和条目正确，版本增删允许。", "T4 encoders九分类正确，ruby缺失允许。", "T5 evasion/ls无输出符合空目录。", "T6 exploits平台条目可见，版本差异允许。", "T7 nops架构条目符合版本容忍。", "T8 payloads三个类别可见，adapters缺失允许。", "final post路径及平台类别可见，顶层ls历史保留。"],
+    "extraction_fail": ["S1", "S2", "S3", "S4"], "method_fail": ["S1"], "result_fail": [], "quality_fail": ["S1"], "record_fail": ["S1"], "task_completion": "pass",
+    "completion_reason": "首个before已显示控制台横幅，后续有序图显示退出及全部七类目录访问和ls，最终post；动作记录缺口另评。",
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "SOURCE_VISUAL_REVIEW_UNAVAILABLE", "step_id": "S2", "message": "source-01工具返回Failed to process image: the image contains non-compliant content；未能读取S2-S4来源，未伪称已视觉核实。"},
+      {"dimension": 0, "severity": "error", "code": "MISSING_CONSOLE_EXIT_METHOD", "step_id": "S1", "message": "S1声称退出控制台但必需方法只在msf提示符cd/ls，没有退出或进入shell操作。"},
+      {"dimension": 1, "severity": "error", "code": "MISSING_KEY_EXIT", "step_id": "S1", "turn": 1, "message": "before为msf提示符，动作直接cd且无exit；T2才显示exit和shell命令。"},
+      {"dimension": 2, "severity": "error", "code": "PLAN_ACTION_KEY_CONFLICT", "step_id": "S1", "turn": 1, "message": "Thought明确先exit，但实际动作没有exit，直接输入shell路径操作。"},
+      {"dimension": 3, "severity": "error", "code": "UNEXPLAINED_CONSOLE_EXIT", "step_id": "S1", "turn": 1, "message": "T2截图显式exit命令不在T1动作中，msf到shell关键上下文变化缺少对应动作。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 17, "scores": [2, 3, 3, 3], "confidence": [0.98, 0.99, 0.98, 0.99],
+    "summaries": ["五个goal及相邻源帧完整支持账户删除；S1菜单/设置来源时间标注与42.450s已在个人信息的源画面错位，为辅助定位warning。", "Windows11中文布局符合容忍条款，管理员个人信息、test展开、确认及删除后空列表均达成。", "九轮观察和点击目标正确，S2一次定位纠错后进入目标页，无持续乱点。", "桌面到设置、账户、确认框与删除后列表连续，未见关键状态跳变。"],
+    "extraction": ["53.8s/53.05/54.55s显示ACER本地管理员个人信息；42.450s已在该页，44.5/49.5s的更早导航时间说明错位。", "71.1s及两侧帧完整显示test未展开。", "80.2s及79.45/80.95s显示更改类型/Remove。", "98s及两侧帧显示Delete account and data确认、test和数据后果。", "142.6s及141.85/143.35s确认关闭且test消失。"],
+    "alignment": ["T2开始菜单设置、T3主页、T4账户、T5管理员本地个人信息，用户名差异允许。", "T5返回后首次点击未进入，T6一次纠正，T7其他用户test未展开。", "T8 test已展开且有更改类型/删除。", "T9确认框含test与数据说明及删除/取消。", "final确认框消失且其他用户仅添加入口，test消失。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "NAVIGATION_TIMESTAMP_DRIFT", "step_id": "S1", "message": "S1辅助导航标注44.5/49.5s，但42.450s源帧已进入个人信息；53.8s目标及后续删除核心证据完整。", "video_timestamp_sec": 42.45}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "goals-01.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg", "source-05.jpg"]
+  }
+,
+  {
+    "sample_no": 18, "scores": [2, 2, 3, 3], "confidence": [0.96, 0.98, 0.99, 0.98],
+    "summaries": ["来源支持选项/此电脑/隐私/清空；S4把Apply后空状态提前作为Clear后的goal，S5关闭是非核心确认扩展。", "全部设置和最终空主页正确；S4即时空状态直到S5 Apply才出现，累计证据支持，记时序warning。", "十轮观察、有限重清和Apply后的刷新准确，最终最大化补全可见性合理。", "有序状态链从最近文件列表到复选框取消、Apply后空列表、关闭对话框均成立。"],
+    "extraction": ["17.150s任务栏资源管理器、25.725s主页/Recent支持启动。", "25.725s三点Options与34.300s General完整控件。", "51.451s下拉框ThisPC。", "60.026s取消两项、68.601s第三项也取消且列表尚在；77.176s Apply后才空，S4即时空状态时序过细。", "85.751s已空且Apply灰色，对话框仍打开；OK关闭属落地确认扩展。"],
+    "alignment": ["T2主页有多个真实最近文件。", "T3三点菜单Options、T4 General三项隐私勾选。", "T6下拉框显示此电脑。", "T7/T8两项取消且Clear已点击，列表仍在；T9 Apply后出现累计空状态。", "T9 Apply灰色、T10对话框关闭，final主页空状态完整且0项目。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "AUXILIARY_REFRESH_TIMING", "step_id": "S4", "message": "源帧68.601s设置取消后列表仍在，77.176s Apply后清空；task把空状态放到Clear后，属辅助刷新时序过度描述。", "video_timestamp_sec": 77.176},
+      {"dimension": 1, "severity": "warning", "code": "DEFERRED_PRIVACY_APPLY", "step_id": "S4", "turn": 8, "message": "Clear后列表暂留，S5 Apply后出现空状态；累计后图证实清空，核心操作和最终设置成功。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 19, "scores": [3, 3, 2, 3], "confidence": [0.98, 0.99, 0.96, 0.96],
+    "summaries": ["源视频支持四种行内样式、两组列表、源码对照及运行日志，完整覆盖四步。", "原始1024像素截图确认combined两侧反引号存在，四种源码/渲染、列表和运行状态全部正确。", "当前观察和核心对照准确；S2查找未输入反引号、S4拖动查看日志存在局部冗余和成功纠正。", "浏览器/编辑器/历史日志有序链可解释；回看旧启动过程再滚到底部不判重启，源码无变化。"],
+    "extraction": ["4.868s/9.737s四项目渲染、No parameters/200清楚。", "14.605s至34.079s源码单星/双星/反引号及***`combined`***。", "38.947s/43.816s两组四列表条目及200。", "48.684s源码完整两组列表、HelloWorld和底部CTRL+C/200日志。"],
+    "alignment": ["T2四渲染项目及No parameters/200可见，顶部标题稍出视口不影响内容。", "T3原始图第27行明确***`combined`***，四种标记和HelloWorld与goal一致；缩略图易漏读，已用原图纠正。", "T7两组四条目与No parameters/200完整可见。", "T10-T13累计完整列表源码、HelloWorld和CTRL+C运行横幅/200；final滚回最新输出。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [], "task_completion": "pass",
+    "completion_reason": "四种markdown行内样式、两组列表及对应源码完整，历史横幅与200证明服务运行。",
+    "issues": [
+      {"dimension": 2, "severity": "warning", "code": "LOCAL_SEARCH_PATTERN_MISMATCH", "step_id": "S2", "turn": 4, "message": "Thought拟查找完整***`combined`***，实际查找***combined***遗漏反引号；源码始终正确且已在当前图可读，辅助查找不影响核心对照。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 20, "scores": [2, 2, 2, 2], "confidence": [0.96, 0.99, 0.97, 0.93],
+    "summaries": ["教程完整支持单文件add_url_rule和三文件重构；S2空注册的精确中间点与首次环境准备未直接捕获，属非核心细节。", "六步代码与五个真实浏览器响应、200日志均成立；final有VS Code更新密码框，但关键路由日志可见且前轮累计支持所有代码。", "局部缩进、解释器和副本命名纠错均成功恢复，无持续错误核心操作；final更新弹窗属局部可见性warning。", "41轮关键代码和前后状态连续；导出中的缺省换行及实体转义表现为低层表示不确定性，未据此否定视觉成立的关键语义。"],
+    "extraction": ["0s app.py为空且L20已存在、79.895s包含Flask/request及实例，文件准备属辅助扩展。", "79.895s/159.790s包含hello/handle_form和注释，159.790s已开始填/hello；空调用中间状态未精确捕获。", "239.685s两路由注册及后续399.475s完整main入口支持。", "319.580s三引号对照与临时语法错误、399.475s修复后的对照/真实GET form及hello/form 200。", "479.370s四文件、559.266s完整三个函数与返回值。", "639.161s routes注册、719.056s入口导入、798.951s实例启动、878.846s动态响应及三条200，累计支持重构。"],
+    "alignment": ["T3打开L20，T8创建app.py，T10完整骨架保存。", "T11 hello、T12空注册、T13handle_form/POST和GET完整。", "T14 hello注册，T15缩进偏差T16纠正且form和main已正确。", "T18三引号对照、T20/T21缺库报错后T22绝对解释器成功；T24hello、T25form、T26两200。", "T28复制，T29副本命名纠正，T31函数完整、T33四文件/函数已保存。", "T35 routes三注册、T36入口、T38重启无错、T39首页/T40about/T41nilesh，final三200仍完整可见。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "NONCORE_INTERMEDIATE_DETAIL", "step_id": "S2", "message": "均匀源帧未精确捕获完全空的app.add_url_rule()；注册填充前的辅助中间状态不改变核心路由实现。", "video_timestamp_sec": 159.79},
+      {"dimension": 1, "severity": "warning", "code": "FINAL_SYSTEM_MODAL", "step_id": "S6", "turn": 41, "message": "final有VS Code更新密码框；三条200日志仍可读，T35/T36代码和T39-T41响应累计证明任务完成。"},
+      {"dimension": 2, "severity": "warning", "code": "RECOVERED_LOCAL_EDITS", "step_id": "S3", "turn": 15, "message": "一次缩进偏差经逐行退缩成功；解释器缺库与副本命名亦得到成功恢复，未留下失败重试状态。"},
+      {"dimension": 3, "severity": "warning", "code": "LOW_LEVEL_TEXT_REPRESENTATION", "step_id": "S6", "turn": 34, "message": "动作中动态参数标签被实体转义、部分换行未展开；有序代码截图和真实动态路由结果充分，低层精确执行对账已豁免。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "trajectory-05.jpg", "trajectory-06.jpg", "trajectory-07.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 21, "scores": [2, 1, 1, 1], "confidence": [0.94, 0.98, 0.98, 0.97],
+    "summaries": ["源视频直接支持五段核心代码和开关调色；S5最末清理/退出行在均匀帧边缘、S6逐通道穷举验证为辅助扩展。", "代码和黑色/黄色/橄榄色及一次ESC退出成立；S6重复明显错误拖拽、B始终0，没有完成各通道验证，路径不通过。", "T7/T14重复未正确拖动B，T8拖到窗口外选中源码，后续重启再次重复验证，不是单次局部纠错。", "T3仅写到30行后T4突然出现运行41行break失败的终端历史；T15只有拖拽后final窗口消失并回提示符，存在关键执行/退出证据缺口。"],
+    "extraction": ["79.653s/99.566s完整三createTrackbar，0/255/nothing一致。", "99.566s/119.479s switch换行标签和0/1 createTrackbar。", "139.392s/159.306s四getTrackbarPos。", "139.392s和199.132s开关0置黑与BGR/imshow。", "199.132s waitKey与q/27条件，最末清理/退出在下边缘未完整捕获；非核心精确行号需更细定位。", "0s黑/19.913s开关1黑/39.826sR255G91B0橙色，支持调色；逐三通道和完整退出演示未被均匀帧捕获，为辅助验证扩展。"],
+    "alignment": ["T2三通道createTrackbar逐项正确。", "T3switch和0/1开关正确。", "T4四getTrackbarPos完整，注释26行被折叠可由后图累计查看。", "T5黑/BGR分支和imshow正确。", "T6正确循环内waitKey/q/27/break及循环外destroy，实际ESC一次成功证明运行。", "T8黑色0、T10黄色1、T11橄榄色1、T12ESC退出正确；T7/T14 B拖动错误、T8窗口外拖拽、重启重复，B始终0，最终退出未在动作中体现。"],
+    "method_fail": ["S6"], "result_fail": [], "quality_fail": ["S6"], "record_fail": ["S3", "S6"],
+    "task_completion": "pass", "completion_reason": "程序完整且黑/混合色/实时改变及一次ESC销毁已验证；B通道单独验证与过程路径问题另评。",
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "AUXILIARY_VERIFICATION_EXTENSION", "step_id": "S6", "message": "源视频展示开关与R/G混色，task细化为每个通道和退出验证，核心程序不变。", "video_timestamp_sec": 39.826},
+      {"dimension": 1, "severity": "error", "code": "REPEATED_WRONG_SLIDER_TARGET", "step_id": "S6", "turn": 14, "message": "T7/T14拖B未改变数值，T8窗口外拖拽反而选中代码，未完成逐R/G/B验证。"},
+      {"dimension": 2, "severity": "error", "code": "REPEATED_INEFFECTIVE_DRAGS", "step_id": "S6", "turn": 8, "message": "多个拖拽偏离滑块/窗口且第二次启动重复错误B定位，已超过一次局部成功纠错。"},
+      {"dimension": 3, "severity": "error", "code": "UNEXPLAINED_FUTURE_CODE_RUN", "step_id": "S3", "turn": 4, "message": "T3动作只输入到30行，T4终端却出现运行slider.py第41行break outside loop错误；所给前序没有执行或相应41行代码变化。"},
+      {"dimension": 3, "severity": "error", "code": "UNEXPLAINED_FINAL_EXIT", "step_id": "S6", "turn": 15, "message": "T15记录只有三个拖拽及等待，final窗口关闭并回提示符；本轮没有ESC/q或关闭操作。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 22, "scores": [2, 3, 2, 2], "confidence": [0.92, 0.97, 0.94, 0.92],
+    "summaries": ["源代码和图像支持七阶段绘图；保存字节数与辅助重试描述属于非核心细节，横线终点由源y4纠正为y6是合理目标修正。", "安装、VIM骨架和五阶段图像均完成，最终白框十字四象限正确，关键绘图参数一致。", "观察与动作总体准确，有限安装及窗口切换纠错成功；T15称当前终端而before仍是查看器，属于局部焦点措辞。", "关键图像按黑图、填充、边框、竖线、横线连续变化；S2前有未记录的旧文件删除历史，属已恢复的辅助失败尝试。"],
+    "extraction": ["0s安装命令与项目路径直接可见，完成/ls属准备验证。", "84.435s有12行骨架、import/f/main；精确100字节未由源直接支持，非关键。", "253.305s代码np.zeros800/600/3与imwrite，591.046s运行返回支持生成。", "506.611s尺寸700/274/152.5/50坐标，675.481s填充126/160/70代码。", "675.481s白框rectangle255/255/255线宽2。", "759.916s中点变量，844.351s白框竖中线图像。", "928.786s横线中点和第二line；源误用y4且y6未使用，task修正为y6符合明确四象限目标，失败尝试属非核心。"],
+    "alignment": ["T2失败后T3带适配参数安装成功，T4 ls空目录。", "T5展示12L100B骨架及保存。", "T6运行无错，T7 table.jpg全黑。", "T8配色页、T9运行、T11绿色实心矩形；切窗一次纠正。", "T13展示白色四边框，新增参数一致。", "T14展示居中竖线与白框。", "T15和final展示白框十字四象限，运行返回无错；额外缩进配置未改核心代码。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "NONCORE_PRECISION", "step_id": "S2", "message": "源骨架有依据，但保存100字节等精确包装细节无直接源证据，不改变核心方法。", "video_timestamp_sec": 84.435},
+      {"dimension": 2, "severity": "warning", "code": "LOCAL_FOCUS_WORDING", "step_id": "S7", "turn": 15, "message": "Thought称终端提示符停留，before为查看器前台且终端在后；点击终端后操作成功。"},
+      {"dimension": 3, "severity": "warning", "code": "AUXILIARY_RETRY_GAP", "step_id": "S2", "turn": 4, "message": "T4历史多出vim与rm旧失败文件，当前ls已空；是准备阶段已恢复的尝试，没有关键成品跳变。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 23, "scores": [3, 1, 1, 2], "confidence": [0.99, 0.98, 0.98, 0.93],
+    "summaries": ["四步的空bark、类名调用、static实例字段错误和最终Main均有目标帧与相邻源帧支持，提取正确。", "四步目标代码均出现、任务完成，但S2持续点击错误目标并误设断点，不符合关键目标操作要求。", "T6至T9连续错误目标操作，T6点击代码边栏产生断点、T8选中src、T9选中Scratches；后续键盘恢复不能消除持续乱点。", "代码修改和状态总体连贯；T5称缺少类闭合括号但图中已存在，是单轮局部观察冲突，未造成核心状态跳变。"],
+    "extraction": ["43s及42.25/43.75s显示构造后非静态空bark。", "123s及相邻帧显示三条Dog实例后Dog.bark分号。", "148s及147.25/148.75s显示static、println(name)与精确错误文字。", "212s及相邻帧Main活动、三实例和静态调用完整。"],
+    "alignment": ["T3至T6添加空方法，原字段和构造保留。", "T6至T9错误点击未切Main，且新增断点；T10键盘切换、T12已显示正确独行调用，结果成立但方法失败。", "T13误插voidstatic经T14纠正，T15红色name，T17 Problems显示精确Non-static field错误；符合容许提示形式。", "final为Main、完整三实例与Dog.bark，无遮挡，Dog错误保留。"],
+    "method_fail": ["S2"], "result_fail": [], "quality_fail": ["S2"], "record_fail": [],
+    "task_completion": "pass", "completion_reason": "空方法、static修改、println(name)报错和Main静态调用均由有序截图证实，最终Main活动且代码完整。",
+    "issues": [
+      {"dimension": 1, "severity": "error", "code": "PERSISTENT_WRONG_TARGET", "step_id": "S2", "turn": 6, "message": "点击所谓Main标签实际落到代码边栏产生断点；T8/T9继续点中src和Scratches，连续目标错误后才改用键盘成功。"},
+      {"dimension": 2, "severity": "error", "code": "PERSISTENT_INVALID_CLICKS", "step_id": "S2", "turn": 9, "message": "T6-T9持续无效切换，截图依次显示断点、src及Scratches选中；不是一次成功纠错。"},
+      {"dimension": 3, "severity": "warning", "code": "LOCAL_BRACE_OBSERVATION", "step_id": "S1", "turn": 5, "message": "Thought同时说第16行已有类结束括号又称缺少最外层括号；图中已有括号，属于单轮局部冲突，后续类结构完整。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "goals-01.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg"]
+  }
+,
+  {
+    "sample_no": 24, "scores": [2, 2, 3, 3], "confidence": [0.99, 0.99, 0.99, 0.98],
+    "summaries": ["四步点击与目标状态由源帧直接支持；完成标准增加重新打开验证属于非核心持久性复查扩展。", "四次点击目标准确，最终第二项选中且第一第三项空心；自动保存有选中状态支持，但无额外重开验证画面。", "四轮原生Thought准确描述before，操作简洁且对象匹配。", "菜单、设置、启动页、第二项选中构成完整相邻状态链，无可见时序冲突。"],
+    "extraction": ["42.2s及相邻帧三点菜单含Settings。", "49.8s及相邻帧正常Settings主页。", "57.3s及相邻帧onStartup第一项选中。", "71s及相邻帧第二项选中；额外重开验证未在源演示，不改变核心设置目标。"],
+    "alignment": ["T2菜单完整展开含Settings。", "T3 chrome://settings主页正常显示。", "T4 chrome://settings/onStartup，第一项选中。", "final第二项实心、其余空心，三个选项完整可见；未独立展示重开持久性验证。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "PERSISTENCE_VERIFICATION_EXTENSION", "step_id": "S4", "message": "源展示自动保存后的选中态，完成标准追加重新打开设置页复查，属于非核心验证扩展。", "video_timestamp_sec": 71},
+      {"dimension": 1, "severity": "warning", "code": "NO_EXTRA_REOPEN_CHECK", "step_id": "S4", "turn": 4, "message": "核心选择和自动保存状态已出现，未提供额外重开设置页的独立验证画面。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "goals-01.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg"]
+  }
+,
+  {
+    "sample_no": 25, "scores": [2, 3, 3, 3], "confidence": [0.91, 0.99, 0.99, 0.98],
+    "summaries": ["源支持加号、右键新建及最后四标签；源为Windows且快捷键无按键叠层，Command+T属macOS功能对应，记来源细节warning。", "三种指定方式按序执行，标签数量1到2到3到4，目标完全实现。", "四轮当前观察、右键菜单对象与Command+T均匹配，无无效操作。", "点击加号、右键、菜单项、快捷键与相邻标签数量变化连续一致。"],
+    "extraction": ["37.515s加号悬停、50.020s两个标签。", "75.031s右键菜单第一项、87.536s三个标签。", "100.041s三个至112.546s四个标签；源Windows无按键叠层，macOS快捷键对应是平台适配细节。"],
+    "alignment": ["T2两个New Tab，点击加号成功。", "T3右键菜单首项New Tab to the Right，T4三个标签。", "Command+T后final四个New Tab，菜单关闭，活动新标签。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [{"dimension": 0, "severity": "warning", "code": "PLATFORM_SHORTCUT_SOURCE", "step_id": "S3", "message": "源Windows三到四标签的状态有依据，但未显示按键叠层；task采用macOS对应Command+T，核心新建方法和结果不变。", "video_timestamp_sec": 112.546}],
+    "reviewed_sheets": ["trajectory-01.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 26, "scores": [1, 1, 1, 2], "confidence": [0.98, 0.99, 0.99, 0.96],
+    "extra_reviewed_sheets": ["extra_source/26/extra-01.jpg"],
+    "summaries": ["C#由真实源IDE支持，不因software字段C误判；S5将源do外的sayac声明提取到do内，破坏跨轮获胜计数；S7目标与邻帧没有所称红断点/暂停证据。", "项目与主体代码、运行和断点暂停实现，但多次错误目标点击，且全部字母揭开后仍继续询问，获胜结果缺失。", "项目向导与Options搜索有持续错误坐标和无效试探；游戏未获胜即停止，未达到全部要求。", "关键状态链基本可解释；T25称while已改为bitir而原图仍为true并多出裸bitir，属于一次被下一轮发现纠正的当前观察错误。"],
+    "extraction": ["72s Main注释与ConsoleApp4支持创建结果；源注释分行含çekic，task简化及ASCII转写属于非核心。", "232s数组四词和Random完整，下一条未完成属tolerance允许的过渡。", "545s第二char数组尚未写，890s及相邻累计支持两数组；目标秒点过渡只warning。", "890s for赋值、星号、bitir及空do/while完整。", "1544.168s清楚显示int sayac=1在do前；task S5指定放do体开头，每轮重置为1，是核心控制流提取错误。", "1632s和邻帧支持sayac赋Length、foreach星号递减、while(bitir)，1698.584s还显示外部ReadLine。", "1790s和1789.25/1790.75s均无所称多行红断点及暂停状态；无ASR补充，关键调试证据不足。"],
+    "alignment": ["T1/T2点击同一错误位置未前进，键盘恢复后T7创建；T8注释可见。", "T9四词数组及Random可见。", "T10随机选择、欢迎语和两char数组完整。", "T11填充循环、bitir、do/true骨架可见。", "T12代码块出现但Options搜索T15/T16持续错点、T17无效键盘试探后放弃；代码内容累计可见。", "T25错误编辑经T26/T27恢复，T28无编译错误；final主体保留，sayac仍在do内符合所给task但无法累计获胜。", "T29运行、T30-T33逐字揭示；T37完整pencere后仍提示输入、无Tebrikler消息；T39两红断点，final断点28暂停及变量视图成功，获胜目标失败。"],
+    "extraction_fail": ["S5", "S7"], "method_fail": ["S1", "S5"], "result_fail": ["S7"], "quality_fail": ["S1", "S5", "S7"], "record_fail": [],
+    "task_completion": "not_pass", "completion_reason": "虽成功编译、运行、揭开pencere并断点暂停，但完整单词后仍Lütfen bir harf girin，未出现要求的获胜消息。",
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "COUNTER_SCOPE_EXTRACTION", "step_id": "S5", "message": "1544.168s源int sayac=1位于do外，task却要求do体首行声明；每轮重置导致长度始终不等sayac，核心获胜控制流被改写。", "video_timestamp_sec": 1544.168},
+      {"dimension": 0, "severity": "error", "code": "DEBUG_SOURCE_INSUFFICIENT", "step_id": "S7", "message": "goal1790s及两邻帧无红断点、暂停或变量视图，ASR为空，无法支持所称必需调试操作。", "video_timestamp_sec": 1790},
+      {"dimension": 1, "severity": "error", "code": "PERSISTENT_WRONG_TARGET", "step_id": "S1", "turn": 2, "message": "T1/T2持续在向导错误位置点击，均未推进；S5搜索框两次点击也落到设置树。"},
+      {"dimension": 1, "severity": "error", "code": "WRONG_OPTIONS_TARGET", "step_id": "S5", "turn": 16, "message": "搜索new lines连续两次落错焦点，随后多轮试探无效后放弃，非一次成功纠错。"},
+      {"dimension": 1, "severity": "error", "code": "WIN_RESULT_MISSING", "step_id": "S7", "turn": 37, "message": "T37完整pencere后仍出现新输入提示，未显示Tebrikler Kazandınız获胜消息；final仅证明断点暂停。"},
+      {"dimension": 2, "severity": "error", "code": "PERSISTENT_INVALID_TARGETS", "step_id": "S5", "turn": 17, "message": "T15-T18持续搜索焦点失败并盲目Shift+Tab试探后取消，路径质量不达标准。"},
+      {"dimension": 2, "severity": "error", "code": "WIZARD_INVALID_CLICKS", "step_id": "S1", "turn": 3, "message": "同一向导Next两次错点后改键盘；Create又重复未命中，跨操作持续坐标失败。"},
+      {"dimension": 2, "severity": "error", "code": "UNFINISHED_WIN_STATE", "step_id": "S7", "turn": 37, "message": "完整字母揭开后仍询问却停止执行，未完成获胜结果。"},
+      {"dimension": 3, "severity": "warning", "code": "CORRECTED_FALSE_CURRENT_STATE", "step_id": "S6", "turn": 25, "message": "原图while(true)且下一行裸bitir，Thought称已while(bitir)；下一轮发现并修复，单次局部冲突未持续。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "trajectory-05.jpg", "trajectory-06.jpg", "trajectory-07.jpg", "goals-01.jpg", "goals-02.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg", "source-05.jpg", "source-06.jpg"]
+  }
+,
+  {
+    "sample_no": 27, "scores": [1, 1, 2, 2], "confidence": [0.99, 0.98, 0.93, 0.92],
+    "summaries": ["S1/S3和两命令有源依据；补抽40-54s仍无展开WCF或逐项勾选，源仅父节点填充，S2核心方法为无来源新增。", "五项启用、SFC和DISM完成均出现，但S1明确要求英文界面，实际为中文，不在其tolerance内。", "键盘路径清晰，两个单次焦点纠正均成功；T3提及未展示的AD/Hyper-V恢复历史记局部warning。", "功能勾选、应用完成、管理员终端及两命令结果有序；T2至T3窗口移动及恢复历史未完整记录，属非核心已恢复辅助过程。"],
+    "extraction": ["38s及邻帧英文Windows Features加载正常。", "目标79.5s桌面且78.75s指向Cancel；额外40/42/44/46/47.78/50/52/54s均为.NET父节点折叠、从未展示WCF五项，无ASR，核心新增勾选要求无证据。", "103s及邻帧Administrator标题和system32提示符。", "139s及邻帧sfc验证3%；tolerance明确更高进度亦可，结束等待属验证扩展。", "199s及邻帧DISM命令、横幅及版本；tolerance允许任意进度，完成等待属验证扩展。"],
+    "alignment": ["T2打开正确功能窗口和.NET4.8，但标题/说明为中文，S1tolerance明示文字语言以英文为准。", "T4五项列表、T5五项全勾选、T7请求更改完成、T8桌面，结果完成；点确定一次未命中由Enter恢复。", "T9管理员盾牌及标题，T10 cd至system32；功能等价管理员运行。", "T11真实sfc100%且无完整性冲突。", "final真实DISM100%、还原及操作成功完成，返回system32。"],
+    "extraction_fail": ["S2"], "method_fail": [], "result_fail": ["S1"], "quality_fail": [], "record_fail": [],
+    "task_completion": "pass", "completion_reason": "五项勾选及应用成功、管理员system32、SFC100%和DISM100%成功均有截图；任务概括的功能目标完成，S1额外英文视觉约束不符。",
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "UNSUPPORTED_WCF_METHOD", "step_id": "S2", "message": "补抽40-54s与goal/邻帧均未展开.NET/WCF，源只显示折叠父节点填充，无法支持必需五子项勾选，ASR为空。", "video_timestamp_sec": 47.78},
+      {"dimension": 1, "severity": "error", "code": "EXPLICIT_LANGUAGE_CONSTRAINT", "step_id": "S1", "turn": 2, "message": "S1tolerance写明文字语言以英文界面为准，实际标题Windows功能及说明为中文，允许范围没有语言泛化。"},
+      {"dimension": 2, "severity": "warning", "code": "UNSHOWN_AUXILIARY_HISTORY", "step_id": "S2", "turn": 3, "message": "Thought称恢复AD/Hyper-V勾选，当前两项确未选，但提供轨迹未展示误选及恢复历史；后续动作准确。"},
+      {"dimension": 3, "severity": "warning", "code": "AUXILIARY_RESTORE_GAP", "step_id": "S2", "turn": 3, "message": "T2单点击到T3窗口移动和额外恢复历史未完整展示，已恢复无关选项且关键启用由后续键盘和图像证明。"}
+    ],
+    "extra_reviewed_sheets": ["extra_source/27/extra-01.jpg"],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "goals-01.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg", "source-05.jpg"]
+  }
+,
+  {
+    "sample_no": 28, "scores": [3, 3, 2, 3], "confidence": [0.99, 0.99, 0.97, 0.96],
+    "summaries": ["源视频完整支持初版5、50两结论、布尔标志与最终38，四步提取准确。", "四步代码与中间运行输出均出现，最终38及条件输出正确。", "当前观察与重构步骤正确；T1 type空params没有输入内容，T2立即补写成功，记单次冗余warning。", "空main、变量、循环、初版输出、isPrime和38形成连续状态链，无核心图文矛盾。"],
+    "extraction": ["51s变量a5可见。", "127.5s取模分支及break、153s初版运行，178.501s累计无条件println明确。", "178.501s a50及两行Not/A prime number输出。", "255s及280.501s a38、isPrime true/false和条件println完整。"],
+    "alignment": ["T1空输入未生效，经T2补写，T3 a5可见。", "T5完整初版for2..a-1、取模、break及循环外println可见。", "T6 a50和Not a prime number/A prime number两行真实输出。", "T8标志、T9置false/条件println，final a38且输出面板关闭、全部关键代码可见。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [{"dimension": 2, "severity": "warning", "code": "EMPTY_TYPE_RECOVERED", "step_id": "S1", "turn": 1, "message": "T1 type动作params为空未输入变量，T2正确识别并补写；一次已恢复的输入冗余，不阻断。"}],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 29, "scores": [2, 1, 1, 1], "confidence": [0.96, 0.99, 0.99, 0.99],
+    "summaries": ["源HTML代码、16队和合并表格有完整依据；TextEdit/Safari替换和指定目录属于落地包装，非核心warning。", "表格主体、文件和Safari结果实现，但S1菜单持续错选且源代码多出开头A，不符合逐字完整代码要求。", "关闭纠正菜单时持续错误导航；多轮称空白文档而实际已有A，导致错误字符保留并渲染。", "多个before含A却被Thought系统性称空白，T19称开头代码正确、T26称通读无误仍未识别A；可见事实冲突非日志问题。"],
+    "extraction": ["0/78.430/183.004/209.147/287.578s累计提供完整HTML与原文拼写、colspan6/rowspan4；新建TextEdit、指定目录及保存动作是平台落地包装扩展。", "0/104.574/261.434s渲染16队、四分区及所有零分数完整，Safari为对应浏览器。"],
+    "alignment": ["T4纯文本已含A；T5-T13多次菜单错选至AutoFill/Format，随后HTML前保留A；T25成功保存指定html但源内容并非完全一致。", "final Safari标题Half of NFL Teams、完整16队/四分区/两会议/六列零数据正确；页面上方额外A，表格主体不受损。"],
+    "method_fail": ["S1"], "result_fail": ["S1"], "quality_fail": ["S1", "S2"], "record_fail": ["S1", "S2"],
+    "task_completion": "pass", "completion_reason": "任务概括中的文件保存、16队表格和Safari渲染均实现；S1逐字源码额外A及过程质量另行判失败。",
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "EDITOR_PLATFORM_WRAPPING", "step_id": "S1", "message": "源是Windows代码/预览已有文件，task补充TextEdit新建、保存目录和Safari，核心HTML和表格方法不变。", "video_timestamp_sec": 0},
+      {"dimension": 1, "severity": "error", "code": "EXTRA_SOURCE_CHARACTER", "step_id": "S1", "turn": 19, "message": "源代码首行实际A<!doctype>，要求完整源码<!doctype>；开头A未删除且final渲染出A。"},
+      {"dimension": 1, "severity": "error", "code": "PERSISTENT_MENU_MISTARGET", "step_id": "S1", "turn": 7, "message": "T5点击错误位置，T6-T8导航到AutoFill/Format，T12再导航到AutoFill，属于持续错误目标。"},
+      {"dimension": 2, "severity": "error", "code": "SYSTEMATIC_FALSE_BLANK", "step_id": "S1", "turn": 18, "message": "T2/T4/T8/T9/T18持续称空白，截图始终有A；未清理即输入HTML，产生可见错误字符。"},
+      {"dimension": 2, "severity": "error", "code": "FALSE_SOURCE_CHECK", "step_id": "S2", "turn": 26, "message": "称HTML通读无误，before开头仍A<!doctype>；之前T19也称开头正确，未发现已可见字符。"},
+      {"dimension": 3, "severity": "error", "code": "SYSTEMATIC_FALSE_CURRENT_CONTENT", "step_id": "S1", "turn": 9, "message": "多个before已有A却被称空白，直接事实性冲突并影响后续输入，非执行日志缺失。"},
+      {"dimension": 3, "severity": "error", "code": "FALSE_REVIEWED_CONTENT", "step_id": "S2", "turn": 26, "message": "称完整源代码通读无误，当前明显保留A；与之前多轮空白伪称构成系统性内容观察错误。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "trajectory-05.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 30, "scores": [2, 1, 1, 1], "confidence": [0.94, 0.98, 0.98, 0.97],
+    "summaries": ["源支持两种包装函数、加法日志及计时输出；两次参数验证和清空中间帧未被均匀抽帧捕获，属于核心示例不变的验证细节warning。", "六步视觉结果全部实现，但T1日志行输入content包含type(content=...)调用文本，与必需JavaScript源码和下一张图直接冲突。", "多数原生观察与操作准确；T1关键输入字段含嵌套工具调用文本，无法作为正确训练动作，后续正确画面不能消除此参数问题。", "T1动作将type(content=...)作为字面输入，T2却直接为console.log正确源码，未给出该关键内容移除/修复；属于直接动作到图像矛盾。"],
+    "extraction": ["157.600s提供logExecution/add完整定义及arguements拼写。", "262.667s真实5/3参数及Result8。", "262.667到315.2s跨日志示例转计时，5/7与5/5验证未被均匀帧捕获；只改变验证输入，不改变核心方法。", "0s初始空、315.2s新measureTime且Output空占位，切换所需全选删除为合理编辑包装，空白中间帧未捕获。", "472.8s完整measureTime、slowTask、1e6调用且未运行；代码关键参数一致。", "525.334s/577.868s真实Execution time有限数值ms，复跑允许变化。"],
+    "alignment": ["T2/T3正确函数定义，但T1第5动作content是type(content=\"console.log(...)\")文本，关键源码输入不符。", "T4真实[5,3]与Result8。", "T5真实[5,7]/12，T6真实[5,5]/10，登录浮层及时关闭。", "T7编辑区空，T8运行空程序后无输出，占位恢复。", "T11完整17行计时程序，Output空，未提前运行。", "final Execution time: 2.504803000000001ms，真实输出无报错。"],
+    "method_fail": ["S1"], "result_fail": [], "quality_fail": ["S1"], "record_fail": ["S1"],
+    "task_completion": "pass", "completion_reason": "三组参数加法日志结果8/12/10和第二程序计时行均由有序截图证实。",
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "INTERMEDIATE_VALIDATION_SOURCE", "step_id": "S3", "message": "均匀源帧未直接展示5/7与5/5复跑及清空中间画面；核心日志包装与两示例切换明确，不影响核心方法。", "video_timestamp_sec": 315.2},
+      {"dimension": 1, "severity": "error", "code": "LITERAL_TOOL_CALL_IN_CODE_INPUT", "step_id": "S1", "turn": 1, "message": "第5动作content实际包含type(content=\"console.log(`Calling ...`, args);\")，不是所需console.log源码；该额外工具调用文本无法按HTML实体或换行转义解释。"},
+      {"dimension": 2, "severity": "error", "code": "KEY_CODE_PARAMETER_INVALID", "step_id": "S1", "turn": 1, "message": "关键JavaScript输入字段被包进type(content=...)文本，动作参数与训练目标源码不一致。"},
+      {"dimension": 3, "severity": "error", "code": "CODE_INPUT_IMAGE_CONFLICT", "step_id": "S1", "turn": 2, "message": "上一轮输入含type(content=...)工具调用文本，当前图直接为正确console.log，未有移除关键包装文本动作；是可见内容对账冲突，不依赖独立日志。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 31, "scores": [1, 0, 0, 0], "confidence": [0.99, 1, 1, 1],
+    "summaries": ["教程支持主要界面浏览，但S4-S6把左侧栏三种视图按钮写成左下状态栏，S7把Visualizations里的Drill through写入Filters；核心目标位置和分区归属错误。", "候选trajectory.turns为空且无before/final，九步均无执行和结果证据，按not_pass处理。", "没有候选截图、Thought或动作，不能证明九步过程及结果达到训练标准。", "仅豁免独立executor_log，候选动作前截图与相邻状态链仍必需；本例全部缺失，记录维度证据不足。"],
+    "extraction": ["55.877s Home及指定七选项卡/数据工具组可见。", "111.754/139.692s Data搜索和空数据区可见。", "139.692s Visualizations图标库与字段区可见，原本已展开；点击切换属非核心。", "补抽205/210s Table视图和空数据可见，但按钮在左侧竖栏，非所要求左下状态栏。", "218/222/227s Model空模型示意及Properties可见，按钮在左侧竖栏，不是左下状态栏。", "223.507s及后续报表卡片支持返回，Report按钮仍在左侧竖栏，底部按钮实为桌面/手机布局。", "251.446/279.385s Filters仅this page/all pages两类；Drill through实际在旁边Visualizations，任务强制三类同窗格矛盾。", "276s独立Power Query Queries0，282s已关闭、290s主报表，时间定位偏移由邻帧支持只warning。", "312.3s手机Create mobile layout、315/317s退出、329.3s Home普通空报表，时间点轻微漂移不阻断。"],
+    "alignment": ["无turn或截图，不能核对Home观察和选中态。", "无turn或截图，不能证明Data展开及空字段。", "无turn或截图，不能证明Visualizations图标库可见。", "无turn或截图，不能证明Table切换和无数据状态。", "无turn或截图，不能证明Model空关系画布。", "无turn或截图，不能证明返回Report。", "无turn或截图，不能证明Filters展开和分区。", "无turn或截图，不能证明Power Query打开关闭。", "无turn或截图，不能证明手机布局进入退出及最终空报表。"],
+    "extraction_fail": ["S4", "S5", "S6", "S7"],
+    "method_fail": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9"],
+    "result_fail": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9"],
+    "quality_fail": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9"],
+    "record_fail": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9"],
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "VIEW_CONTROL_TARGET_LOCATION", "step_id": "S4", "message": "S4-S6强制左下状态栏Table/Model/Report按钮，源实际左侧竖栏；底部是桌面和手机布局，核心点击目标位置错误。", "video_timestamp_sec": 210},
+      {"dimension": 0, "severity": "error", "code": "MODEL_CONTROL_LOCATION", "step_id": "S5", "message": "Model按钮在左侧竖栏第三项，非任务所述左下状态栏。", "video_timestamp_sec": 222},
+      {"dimension": 0, "severity": "error", "code": "REPORT_CONTROL_LOCATION", "step_id": "S6", "message": "Report按钮在左侧竖栏第一项，非左下桌面布局按钮。", "video_timestamp_sec": 230},
+      {"dimension": 0, "severity": "error", "code": "FILTER_SECTION_OWNERSHIP", "step_id": "S7", "message": "Drill through在Visualizations窗格，Filters仅页面和所有页；task强制Filters包含三类且tolerance禁止缺失，核心视觉要求矛盾。", "video_timestamp_sec": 267},
+      {"dimension": 1, "severity": "error", "code": "CANDIDATE_TRAJECTORY_EMPTY", "step_id": null, "message": "九步无候选turn、动作、before或final；无法证明执行方法与结果。"},
+      {"dimension": 2, "severity": "error", "code": "CANDIDATE_VISUAL_EVIDENCE_MISSING", "step_id": null, "message": "没有候选截图和Thought，九步过程和训练质量均无依据。"},
+      {"dimension": 3, "severity": "error", "code": "BEFORE_STATE_CHAIN_MISSING", "step_id": null, "message": "没有候选before和相邻状态链，属于未豁免的截图记录证据缺失；并非因executor_log缺失判失败。"}
+    ],
+    "extra_reviewed_sheets": ["extra_source/31/extra-01.jpg", "extra_source/31/extra-02.jpg", "extra_source/31/extra-03.jpg"],
+    "reviewed_sheets": ["source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 32,
+    "scores": [1, 1, 2, 2],
+    "confidence": [0.99, 0.99, 0.95, 0.94],
+    "summaries": ["教程支持事务、运行期错误、计数累加、队列期错误和转账，但S9把源视频旧值y写为必需v，改变关键输入与验收值。", "主要事务命令与结果成立，S7重放INCR b返回2而要求1，未重置b；最终读改写成功不能补足该检查点。", "Thought与画面总体准确；一次预期重放返回1未成立，下一轮仅称整数结果，属于局部计划偏差而非系统性伪称。", "日志豁免后可见状态按命令推进；S1后清屏与S2取消操作移至T3是辅助整理，未发现关键伪造或反序。"],
+    "extraction": ["74.743s显示redis-cli连接本机服务，平台外观可泛化。", "74.743s显示MULTI/OK/(TX)，取消及清屏是辅助演示。", "224.230s/298.974s显示a整数错误、b=1、LPUSH类型错误。", "298.974s三条成功结果均1。", "373.717s两次递增结果均2。", "373.717s及390–410s显示unknown command；补充EXECABORT为队列期错误验证。", "新会话与混合错误示例有源上下文，重放为验证扩展；没有独立重置b的必需方法。", "448.461s和660s显示两账户1000转账及-1000/1000。", "675/680/690/700s明确GET x返回\"y\"，task要求SET x v并返回\"v\"，关键值被改变。"],
+    "alignment": ["T2显示普通redis提示符；首个before已有终端标签，无需重建。", "T3显示MULTI/OK，T3动作DISCARD后初始化a再清屏MULTI；取消和再进入确实实施，辅助顺序偏差。", "T5显示两个错误与中间整数1，运行期错误不回滚成立。", "T6显示num1/num2/new_list三个整数1。", "T7显示num1/num2两个整数2并重新MULTI。", "T8显示unknown command与EXECABORT。", "T9及final重放第二项为整数2，不符合要求的整数1；同服务新会话保留b并再次INCR造成累加。", "T10及final显示DECRBY/INCRBY1000返回-1000/1000。", "final显示SET x v、MULTI、GET x、SET x10，EXEC返回\"v\"与OK，符合给定task。"],
+    "extraction_fail": ["S9"], "method_fail": [], "result_fail": ["S7"], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "KEY_SOURCE_VALUE_CHANGED", "step_id": "S9", "turn": null, "message": "源675–700s GET x旧值为y，task将v作为必需输入和输出，没有源支持该关键字面值修改。", "video_timestamp_sec": 680},
+      {"dimension": 0, "severity": "warning", "code": "REPLAY_VALIDATION_EXTENSION", "step_id": "S7", "turn": null, "message": "将混合事务在新会话重放作为验证扩展，但同服务b已增至1，若无重置再次INCR不能仍返回1。", "video_timestamp_sec": 410},
+      {"dimension": 1, "severity": "error", "code": "REPLAY_COUNTER_MISMATCH", "step_id": "S7", "turn": 9, "message": "重放结果第二项明确为(integer)2，task要求(integer)1；其余两项错误文本相符。"},
+      {"dimension": 2, "severity": "warning", "code": "LOCAL_PREDICTION_MISMATCH", "step_id": "S7", "turn": 8, "message": "计划称三项结果完全一致，但b会继续累加；T9未把2伪称1，属于单次预期偏差。"},
+      {"dimension": 3, "severity": "warning", "code": "AUXILIARY_SCREEN_CLEAR", "step_id": "S2", "turn": 2, "message": "S1输入连接后T2已清屏，辅助清屏未单独出现；之后关键事务状态有序。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"],
+    "extra_reviewed_sheets": ["extra_source/32/extra-01.jpg", "extra_source/32/extra-02.jpg"]
+  }
+,
+  {
+    "sample_no": 33,
+    "scores": [2, 3, 3, 3], "confidence": [0.97, 0.99, 0.99, 0.98],
+    "summaries": ["教程Run it面板明确给出九条命令与回复语义；落地为GNOME真实终端和指定Redis版本属于环境细化。", "真实终端逐条完成九命令，同会话所有回复类型与字面值匹配。", "三轮Thought准确引用当前画面并计划后续输入，焦点和参数正确，无失败试探。", "日志豁免后的三张before与final严格按PING、读写、自增、删除推进，没有关键状态跳变。"],
+    "extraction": ["41.120/47.974s Run it命令面板提供PING及带消息PING，回复面板和说明支持PONG/字符串。", "41.120/47.974s直接提供greeting/hello及counter10→11的五命令和回复。", "41.120/47.974s给出DEL/GET和整数1，底部说明nil表示键不存在。"],
+    "alignment": ["T2显示redis-cli启动、本机提示符、PONG及\"are you there?\"。", "T3累计显示五条正确命令和OK、\"hello\"、OK、(integer)11、\"11\"。", "final累计九条命令，DEL返回(integer)1、GET返回(nil)，同会话保持。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [{"dimension": 0, "severity": "warning", "code": "ENVIRONMENT_SPECIFICATION", "step_id": "S1", "turn": null, "message": "教程是Run it命令教学面板；GNOME和redis-cli5.0.2为落地环境细化，未改变核心命令方法。", "video_timestamp_sec": 41.12}],
+    "reviewed_sheets": ["trajectory-01.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 34,
+    "scores": [2, 1, 1, 2], "confidence": [0.93, 0.98, 0.98, 0.94],
+    "summaries": ["源视频支持五个程序的核心代码、变量和运行；载入Hello World模板及全选替换为辅助组织扩展，源中Various Discs标题并不影响核心打印方法。", "五段代码与输出全部符合task；但S1点击Flutter分区后用未聚焦菜单的Tab/Enter在编辑器插入空行，连续错误目标不符合方法标准。", "S1在可见菜单上点错行又错误使用编辑器键盘焦点，构成连续无效试探；后续自动补全残留均明确定位并清理，不单独判失败。", "关键画面链路成立；T2称页面已回到原gist、T3称两次点击失败属于历史措辞扩展，未系统性伪称当前代码或结果。"],
+    "extraction": ["84.718s是默认循环示例，140s菜单/169.437s Various Discs编辑到254.155s直接打印Hello World；选择指定模板是非核心准备扩展。", "338.874s声明a2/nameCodeWarriors并运行输出Value of a is2。", "423.592/508.311s及545/555s支持double12.75、num1234、booltrue和打印扩展。", "677.747/762.466s未初始化var后四种赋值与null/12/Snehal/12.45/true完整。", "847.184s开始addofnum、915/920s return a+b和12/15/total插值打印齐全；RUN处于编译过渡，最终27可由代码支持。"],
+    "alignment": ["T2菜单Hello world在约y268，T2点y295落Flutter分区；T3 Tab/Enter未聚焦菜单且T4编辑器新增空行；T4改点y268才成功。T5替换模板并T6删除补全括号，T8真实输出Hello World。", "T9自动补全残留经T9/T10 Delete清理，T12输出Value of a is2。", "T13残留经ShiftEnd/Delete清理，T15五行输出全部正确。", "T16输入动态var程序，T17五行null/12/Snehal/12.45/true正确。", "T18函数与main齐全，残留经ShiftEnd/Delete清理，final输出Value of total is27。"],
+    "method_fail": ["S1"], "result_fail": [], "quality_fail": ["S1"], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "TEMPLATE_PREPARATION_EXTENSION", "step_id": "S1", "turn": null, "message": "教程在Various Discs标题下手写Hello World；task指定先选Hello World模板是辅助准备细化，核心print方法与输出有源支持。", "video_timestamp_sec": 254.155},
+      {"dimension": 1, "severity": "error", "code": "REPEATED_MENU_FOCUS_ERROR", "step_id": "S1", "turn": 3, "message": "T2明显点到Flutter分区，T3又用未聚焦菜单的Tab/Enter在代码区插入空行；T4才点中Hello world。最终成功不消除连续错误目标。"},
+      {"dimension": 2, "severity": "error", "code": "REPEATED_INVALID_SELECTION", "step_id": "S1", "turn": 3, "message": "菜单文字清晰可见仍先错点分区再未核实键盘焦点，形成连续无效选项试探。"},
+      {"dimension": 1, "severity": "warning", "code": "AUTOCOMPLETION_REPAIRED", "step_id": "S3", "turn": 13, "message": "自动补全导致末行多余引号括号，明确选尾删除后代码与输出正确；S1/S2/S5同类残留也恢复。"},
+      {"dimension": 3, "severity": "warning", "code": "LOCAL_HISTORY_WORDING", "step_id": "S1", "turn": 2, "message": "T2称重新回到原gist、T3称两次点击失败，所给动作仅开菜单与一次选项错点；当前菜单观察准确，属局部历史措辞。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "source-01.jpg", "source-02.jpg"],
+    "extra_reviewed_sheets": ["extra_source/34/extra-01.jpg", "extra_source/34/extra-02.jpg"]
+  }
+,
+  {
+    "sample_no": 35,
+    "scores": [2, 2, 2, 2], "confidence": [0.95, 0.96, 0.97, 0.95],
+    "summaries": ["教程支持打开设置、选择Acri、应用和关闭；task的外观页导航为版本适配细化，语言与预览状态是源环境附带描述。", "新版OBS把Acri列在Yami样式中，实际选择Acri并Apply/OK后主窗近黑/蓝按钮成立；语言和预览背景存在非核心环境差异。", "一次下拉检查发现仅Yami后转样式并准确选Acri，是有限控件探索；Thought整体准确，未持续错点。", "设置、外观、下拉、Acri和关闭状态连贯；T2回到常规的历史措辞为局部冗余，未伪称关键设置。"],
+    "extraction": ["5.540/8.310s Settings在General且English/DarkDefault。", "13.850s展开Theme、16.620s显示Acri近黑蓝色，旧版没有单独外观导航；新版导航细化不改变关键主题选择。", "16.620s Apply已灰、OK可见，19.391s对话框关闭、Acri主窗成立。"],
+    "alignment": ["T2设置常规页完整，无改动；语言为当前环境简体中文，默认深色成立。", "T3进入外观，T4/T5 Theme仅Yami；T6样式列Acri，T7样式Acri且近黑蓝色，与旧版ThemeAcri功能等价。", "T7动作Apply后OK，final设置关闭且Acri主窗保持；预览启用/未录制与源禁用预览/录制中属于主题外的环境状态。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "VERSION_NAVIGATION_DETAIL", "step_id": "S2", "turn": null, "message": "源在General直接选ThemeAcri，task加入外观页是新版导航适配描述，关键主题方法一致。", "video_timestamp_sec": 16.62},
+      {"dimension": 1, "severity": "warning", "code": "ENVIRONMENT_AND_STYLE_LABEL", "step_id": "S2", "turn": 7, "message": "新版Theme为Yami、Style为Acri，语言中文且主窗预览启用；Acri视觉和保存结果正确，附带源环境字段有差异。"},
+      {"dimension": 2, "severity": "warning", "code": "FINITE_DROPDOWN_CHECK", "step_id": "S2", "turn": 4, "message": "对仅一项Yami下拉试一次Down后改查Style，有限探索成功恢复，不构成持续无效路径。"},
+      {"dimension": 3, "severity": "warning", "code": "LOCAL_RETURN_WORDING", "step_id": "S2", "turn": 2, "message": "Thought称回到常规，上一动作仅打开设置；当前常规画面及无主题改动判断准确。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 36,
+    "scores": [2, 2, 3, 2], "confidence": [0.97, 0.97, 0.98, 0.95],
+    "summaries": ["四步代码、复制、插入单元格及输入输出均有源和goal支持；S2/S3/S4动作时间描述有数秒漂移，按相邻证据只记warning。", "补全代码、CtrlA/C、粘贴新单元格、运行及五输入/最大值均成立；动作实体转义存在序列化歧义，图上正确运算符及成功结果优先。", "七轮准确观察当前代码、选中、空单元格及首次输入框；操作对象明确，没有失败试探或因果错位。", "画面从补全到复制粘贴运行输出连续；T1动作含HTML实体而后图为>，仅序列化表示歧义，没有可证实关键编辑跳变。"],
+    "extraction": ["39.550/41.250/42/42.750s完整forj、print/if/m赋值/顶格最终print，允许顶部滚出。", "105.467/112.250/113s代码连续全选，113.750s已切换浏览器；复制时间有轻微漂移但核心证据成立。", "119.250/120s新单元格完整程序，120.750s开始运行，上方求和输出15保留；tolerance允许Colab→Jupyter。", "118.651s已开始输入，131.834/145.018/149.250/150s五输入1/5/10/2/4及MaxNumber10完整；描述中的122.8–143.2起止漂移不影响目标。"],
+    "alignment": ["T2显示19.py完整forj/print/if>/m赋值及顶格最终print，缩进正确，CtrlS已执行。", "T3完整程序连续全选，后续粘贴内容交叉证明复制。", "T4为Excercises笔记本既有求和输出15，T5新空单元格，T6粘贴完整程序且上方保留；原始T4地址/标题核验文件名。", "T7首次输入框，final五次输入和逐行打印1/5/10/2/4，结尾MaxNumber10、单元格执行完毕。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "SOURCE_ACTION_TIME_DRIFT", "step_id": "S4", "turn": null, "message": "118.651s已开始响应输入，method描述121.7s才运行、122.8s起输入有数秒漂移；相邻及goal均支持正确程序和输入序列，不能仅凭时点判失败。", "video_timestamp_sec": 118.651},
+      {"dimension": 1, "severity": "warning", "code": "SERIALIZED_OPERATOR_ENTITY", "step_id": "S1", "turn": 1, "message": "动作文本为if(a[j] &gt; m)，T2/T6及final代码为>并正常运行；存在HTML转义表示歧义，未证明实际输入错误。"},
+      {"dimension": 3, "severity": "warning", "code": "OPERATOR_REPRESENTATION_AMBIGUITY", "step_id": "S1", "turn": 1, "message": "HTML实体与画面>的差异仅属于可疑序列化，不足以证明未记录的代码替换；独立日志精确对账已豁免。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "goals-01.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg"]
+  }
+,
+  {
+    "sample_no": 37,
+    "scores": [1, 1, 1, 1], "confidence": [0.98, 0.99, 0.98, 0.99],
+    "summaries": ["主要循环与函数主题有源依据，但S1指定Python Intro输出无源依据、S2嵌套边界从<20改<=20、S8把核心参数函数改为另一套代码及新增**kwargs，提取不通过。", "累计画面证明九步目标输出大体齐全，S2回Home点击明显在代码区且嵌套False重跑缺失；已完成结果不能消除关键方法缺陷。", "大多数轮观察准确、滚动有限、无限循环为任务要求且主动中断；S2关键导航目标错误及遗漏嵌套False操作不符合训练标准。", "T7当前Home标签在顶部约300,98，动作120,505位于type代码；T8却已返回文件树，没有导航动作解释，构成直接非日志状态跳变。"],
+    "extraction": ["0–160s为安装/IDE说明，165s直接打开Conditions；已审12均匀帧及60–190s补帧，未见Python Intro及指定列表/isinstance/type输出，必需核心结果缺源支持。", "200/250s支持True/False与ifelif，350/420/1163.360s源嵌套判断明确a<20，task改a<=20；False重跑的定位属于局部验证扩展。", "500/510s源val*2输出2/4/6/8，520s字典123234、581.680s与后续支持keys/items/解包。", "1745.040s/2035.880s源注释a递减后持续hello10，break<=5无法终止，任务保留此演示而非要求自然终止。", "1745.040s源continue输出Hi/hello0–4，break/pass属于同章节示例；要求另建单元格为包装细化。", "2326.720/2617.560s basicfun1/2乘2、返回赋值、内外10/20有支持。", "2700s列表追加中间尚未正确调用，2908.400/3000s已展示old/new列表及fun1–4、switch0；task省略未调用键2是非核心差异。", "3100s源key_fun(value,new)乘法、def_fun(value,new=9)，3230/3300/3370s源var_fun(val1,*var)及var_fun(*var,val1)；task必需fun1(a,b)打印、b=0和*args/**kwargs字典是新核心代码，没有源/tolerance依据。", "3440/3450s两段lambda与[2,3]、a*b/default5代码完全相符；保存为辅助验证。"],
+    "alignment": ["T2空PythonIntro，T3–T7补建并运行列表/isinstance/type输出，结果累计齐全；已有示例缺失经重建不改变指定结果。", "T7点120,505为type单元格不是Home，T8已文件树；T9–T17完成简单False/elif/and和nested10输出，但未将nested改False重跑。所有列出的目标输出bye/1isvalue/bw0–20均出现。", "T19–T24展示2/4/6/8、keys、items和1 2，Iterations/For/While标题顺序正确。", "T25有限循环10–6作为额外示例，T26–T28注释递减后的持续hello10并中断、内核空闲，符合给定演示目标。", "T29continue完整序列，T30break0–4、T31pass0–4，T31CommandS保存；有序截图累计证明。", "T38–T43 basicfun123/1/2定义和四行输出完整，basicfun2额外打印不改变关键返回值。", "T44 old/new列表正确，T45四函数定义，T46switch0输出Fun1called。", "T47位置输出12、T48TypeError、T49补全12、T50两次关键字12、T51默认10/12、T52位置元组与kwargs字典；章节完整。", "T60 [2,3]、T61 6/10、final检查点更新，保存有动作和画面支持。"],
+    "extraction_fail": ["S1", "S2", "S8"], "method_fail": ["S2"], "result_fail": [], "quality_fail": ["S2"], "record_fail": ["S2"],
+    "task_completion": "pass", "completion_reason": "按给定goals累计可见列表/类型、条件输出、循环、函数、四类参数及lambda结果，Functions保存成功；S2方法缺陷单独判不通过。",
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "UNSUPPORTED_INTRO_RESULTS", "step_id": "S1", "turn": null, "message": "源0–160s安装/IDE页之后165s直接进入Conditions，均匀及加密过渡帧没有PythonIntro列表/isinstance/type；task要求这些核心结果缺少来源。", "video_timestamp_sec": 165},
+      {"dimension": 0, "severity": "error", "code": "NESTED_BOUNDARY_CHANGED", "step_id": "S2", "turn": null, "message": "源420s与1163.360s嵌套条件为a<20，task必需a<=20，改变关键判断边界。", "video_timestamp_sec": 420},
+      {"dimension": 0, "severity": "error", "code": "PARAMETER_PROGRAM_REPLACED", "step_id": "S8", "turn": null, "message": "源为key_fun乘法、默认new=9与var_fun(*var,val1)；task改print(a,b)、默认b=0并新增**kwargs，核心代码/参数及输出被替换。", "video_timestamp_sec": 3100},
+      {"dimension": 1, "severity": "error", "code": "WRONG_HOME_TARGET", "step_id": "S2", "turn": 7, "message": "原始before1146×744中Home约300,98，click120,505落在type代码区，不可能直接选择顶部Home。"},
+      {"dimension": 1, "severity": "error", "code": "NESTED_FALSE_RERUN_MISSING", "step_id": "S2", "turn": 17, "message": "只将首个简单条件改False；nested单元格始终a=10，未实施task明确要求的nestedFalse重跑。"},
+      {"dimension": 2, "severity": "error", "code": "KEY_NAVIGATION_AND_TEST_OMISSION", "step_id": "S2", "turn": 7, "message": "回文件树关键点击明显错位；后续嵌套False测试完全缺失，不能以已有输出免除关键方法要求。"},
+      {"dimension": 3, "severity": "error", "code": "UNEXPLAINED_TAB_NAVIGATION", "step_id": "S2", "turn": 8, "message": "T7只有代码区120,505点击，T8已Home文件树；没有匹配导航动作或异步系统边界解释该页面切换。"},
+      {"dimension": 3, "severity": "warning", "code": "HOTKEY_NEWLINE_REPRESENTATION", "step_id": "S8", "turn": 51, "message": "多处键名含shift加换行而截图代码多行正常，键名表示有歧义；未将此单独升级为参数错误或日志对账失败。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "trajectory-05.jpg", "trajectory-06.jpg", "trajectory-07.jpg", "trajectory-08.jpg", "trajectory-09.jpg", "trajectory-10.jpg", "trajectory-11.jpg", "source-01.jpg", "source-02.jpg"],
+    "extra_reviewed_sheets": ["extra_source/37/extra-01.jpg", "extra_source/37/extra-02.jpg", "extra_source/37/extra-03.jpg", "extra_source/37/extra-04.jpg", "extra_source/37/extra-05.jpg"]
+  }
+,
+  {
+    "sample_no": 38,
+    "scores": [1, 1, 1, 2],
+    "confidence": [0.99, 0.99, 0.99, 0.93],
+    "summaries": ["S1-S4有源图支持；S5遗漏教程对Lower/Basso下缘的关键曲线编辑，只有Upper无法形成要求的平行等厚波浪。", "透明画布、双图层、渐变及640×100缩放成功；S3多次明显点错控件，S5最终保留直边和尖点，不满足平滑单条彩带。", "S3反复定位到错误控件；S5重复点击预览框外且明知尖点、直下沿与折返仍应用，关键结果校验失效。", "豁免日志后画面状态总体连贯，滤镜浮动选区与锚定有前后依据；工具面板移动及T21重绘历史措辞仅为辅助缺口。"],
+    "extraction": ["58.232s新建对话框640×400/72ppi/RGB/透明及84s单层棋盘格。", "84.750s新建透明640×400图层，93s两层。", "116.464s选全色谱/Linear，146s与160s滿铺水平彩虹。", "205s显示居中薄色带，缩放目标及源图相符。", "262.043s和291.159s清楚选择Basso并编辑下缘曲线，320.275s形成平行等厚波浪；task仅要求Upper，遗漏关键下缘处理。"],
+    "alignment": ["T3-T6尺寸、72ppi、RGB/Transparency及单层棋盘格成功，首轮File一次纠错可接受。", "T7-T8新层尺寸透明且两层成功。", "T9-T12三次错误定位到左侧标签/空隙，之后右侧列表选全色谱并T22成功满铺。", "T24-T26断链、640×100/Cubic和居中透明上下区域正确。", "T30-T33只编辑Upper，final下沿仍平直、尖点交叉、右侧残留直带及翻转色序；锚定恢复两层但形态失败。"],
+    "extraction_fail": ["S5"], "method_fail": ["S3", "S5"], "result_fail": ["S5"], "quality_fail": ["S3", "S5"], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "MISSING_LOWER_CURVE", "step_id": "S5", "turn": null, "video_timestamp_sec": 291.159, "message": "教程明确编辑Basso下缘使上下曲线平行；task_spec遗漏这项核心方法，仅Upper不能支持目标等厚波浪。"},
+      {"dimension": 1, "severity": "error", "code": "REPEATED_WRONG_TARGET", "step_id": "S3", "turn": 11, "message": "T9-T11反复点在标签/控件外，T12才改右侧有效预览；超出一次成功纠错。"},
+      {"dimension": 1, "severity": "error", "code": "WAVE_SHAPE_CONFLICT", "step_id": "S5", "turn": 34, "message": "final虽恢复两层，彩带仍有平直下沿、中央尖点、直带残留和下凹翻转弧，不是目标单条平行平滑波浪。"},
+      {"dimension": 2, "severity": "error", "code": "REPEATED_TARGETING_AND_BAD_ACCEPTANCE", "step_id": "S5", "turn": 33, "message": "两次点击预览复选框外，随后Thought准确承认尖点和折返仍确认应用，未检查不可豁免形态。"},
+      {"dimension": 2, "severity": "error", "code": "REPEATED_TARGETING", "step_id": "S3", "turn": 11, "message": "连续三轮根据不准确控件定位重复失败，没有及时依据截图定位右侧工具选项。"},
+      {"dimension": 3, "severity": "warning", "code": "AUXILIARY_LAYOUT_HISTORY", "step_id": "S3", "turn": 21, "message": "T11至T12工具选项移动到右侧未给面板操作，T21称恢复透明但前图本已透明；核心绘制及结果变化仍连贯。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "trajectory-05.jpg", "trajectory-06.jpg", "goals-01.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg", "source-05.jpg"]
+  }
+,
+  {
+    "sample_no": 39,
+    "scores": [1, 1, 1, 1],
+    "confidence": [0.96, 0.99, 0.99, 0.99],
+    "summaries": ["八步形状与颜色主线有依据，但S2硬性要求保留原星形与新五边形并存，与源73.5s及前后帧单个已切换五边形冲突；S7局部裁切仅warning。", "最终红绿双星/蓝描边/Fill面板及RGB成功；S3拖动落错位置新建五边形，S4未清到单个，S5参数多次错定位，S6关键调整提前出现。", "T14/T15把两五边形称为一个，T21称参数全就位而关键比值曾无动作变更；重复输入定位失误及虚假当前数量不达标准。", "非日志证据直接显示未记录的对象清理和Spoke ratio变化；不能用日志豁免解释关键状态跳变。"],
+    "extraction": ["65.5s绿色五角星/Corners5/蓝描边成立。", "72.75/73.5/74.25s均只有一个五边形，原星形已切换；硬性两个对象并存无源依据，并非仅目标时间漂移。", "124.75/125.5/126.25s手柄调整、绿色五条边有支持。", "221.25/222s仅一个五边形，222.75为过渡六角；按目标定位可接受。", "247.25/248s两圆角星与0.660/0.110/0.005支持，邻帧参数变化属过渡。", "271.25/272s细臂星及0.200/0.110/0.065直接支持。", "283.25/284s纯红及绿色细臂，绿色局部裁切；345s全貌支持最终对象要求，裁切仅warning。", "344.25/345s Fill面板No objects及双星；填充与描边色分别浏览，面板状态成立。"],
+    "alignment": ["T5-T9绿色五角星、Corners5及蓝描边由面板证明。", "T11-T12绿色五边形与星形并存成立，一次模式点击纠错接受。", "T12 raw手柄为264,234，动作起点263,190落在空白/边界处；T13出现新增五边形而非调整原对象。", "T13删除星形后T14/T15仍两个五边形，未达到单个数量目标。", "T17-T19反复把Rounded/Randomized点错；T21正确参数后绘制但T22已细臂，没有两饱满星的中间图；下一图可交叉支持曾创建两对象。", "T22 before已0.200细臂，T21动作只有两次绘制，关键比值提前变化；T22输入相同比值冗余而结果正确。", "T25-T26纯红色块与左红右绿/蓝描边成功。", "T27-T30 Flat color ff0000ff、RGB255/0/0及final取消选择/面板打开成功。"],
+    "extraction_fail": ["S2"], "method_fail": ["S3", "S5", "S6"], "result_fail": ["S3", "S4"], "quality_fail": ["S3", "S4", "S5"], "record_fail": ["S4", "S5", "S6"],
+    "task_completion": "pass", "completion_reason": "final仅红色饱满五角星和绿色细臂五角星，均蓝描边；Fill面板开启，前图RGB255/0/0且细臂比值0.200，最终目标完成。",
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "UNSUPPORTED_TWO_OBJECT_REQUIREMENT", "step_id": "S2", "turn": null, "video_timestamp_sec": 73.5, "message": "目标帧及72.75/74.25s均只有已切换成五边形的原对象；要求原星形与新五边形并存缺乏源证据。"},
+      {"dimension": 0, "severity": "warning", "code": "LOCAL_VIEWPORT_CROP", "step_id": "S7", "turn": null, "video_timestamp_sec": 284, "message": "目标时点绿色星右端局部裁切，345s全貌支持最终双星，不能仅凭裁切判提取失败。"},
+      {"dimension": 1, "severity": "error", "code": "WRONG_HANDLE_TARGET", "step_id": "S3", "turn": 12, "message": "原图手柄在264,234，drag起点263,190，下一图多出一个五边形，未按要求调整原五边形。"},
+      {"dimension": 1, "severity": "error", "code": "OBJECT_COUNT_NOT_MET", "step_id": "S4", "turn": 14, "message": "删除星形后两五边形仍同时存在，不满足只剩一个五边形。"},
+      {"dimension": 1, "severity": "error", "code": "REPEATED_PARAMETER_TARGETING", "step_id": "S5", "turn": 19, "message": "T17把Randomized输入落在Rounded，T18后仍0.000，第三次才成功，超出一次纠错。"},
+      {"dimension": 1, "severity": "error", "code": "KEY_METHOD_NOT_RECORDED", "step_id": "S6", "turn": 22, "message": "T22 before已0.200细臂，前轮只有绘制动作且没有调比值；本轮再次0.2不能证明这项关键变化。"},
+      {"dimension": 2, "severity": "error", "code": "FALSE_CURRENT_COUNT", "step_id": "S4", "turn": 14, "message": "T14/T15均称只剩一个，画布明确有两个绿色五边形，后续只记录删除一个。"},
+      {"dimension": 2, "severity": "error", "code": "WRONG_HANDLE_PLAN", "step_id": "S3", "turn": 12, "message": "Thought称已确认手柄却使用263,190，当前真实手柄264,234，造成额外对象。"},
+      {"dimension": 2, "severity": "error", "code": "REPEATED_INPUT_CORRECTION", "step_id": "S5", "turn": 19, "message": "关键参数输入连续失败并重复错误位置，过程质量不达标准。"},
+      {"dimension": 3, "severity": "error", "code": "UNEXPLAINED_OBJECT_DELETION", "step_id": "S4", "turn": 15, "message": "T14两个五边形，T14仅切工具/Star，T15只剩一个；缺失关键对象删除状态变化。"},
+      {"dimension": 3, "severity": "error", "code": "UNEXPLAINED_RATIO_CHANGE", "step_id": "S5", "turn": 21, "message": "T20 Spoke0.809，动作只输入Randomized.005，T21 Spoke已0.660；关键参数跳变。"},
+      {"dimension": 3, "severity": "error", "code": "PREMATURE_THIN_STAR", "step_id": "S6", "turn": 22, "message": "T21只画两星，T22 before已细臂Spoke0.200，与关键参数调整顺序冲突。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "trajectory-05.jpg", "trajectory-06.jpg", "goals-01.jpg", "goals-02.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg", "source-05.jpg", "source-06.jpg"]
+  }
+,
+  {
+    "sample_no": 40,
+    "scores": [2, 2, 3, 2],
+    "confidence": [0.95, 0.98, 0.98, 0.94],
+    "summaries": ["源视频支持单提交、双提交冲突、world解冲突与continue；v1/v2改为dev线性分支及abort/重试/最终cat是落地适配和辅助验证扩展。", "七步参数、日志、冲突标记、abort恢复、world暂存与两个最终提交均实现；nano保存确认按结果接受粒度合并，记warning。", "十轮原生观察、下一步计划及关键动作吻合；单次输入别名/平台快捷键不影响意图，未见关键错误观察。", "豁免日志后前后状态连续且关键内容与提交可对账；nano提交保存少一条显式回车，仅低层记录粒度warning。"],
+    "extraction": ["52.527/105.053s master/v1日志及add d/e.py支持。", "157.580/210.107s按add d.py提交hash拣选，改v1~1是同一目标语义。", "315.161/367.687s冲突仓库hello与world/f两个分支示例；预置dev合并同样两个目标提交属适配。", "367.687/420.214s两个hash拣选及both added:c.py直接支持。", "420.214s hello/world冲突标记有支持；abort恢复再重试属非核心失败演练扩展。", "472.741/525.268s world解冲突、git add支持。", "525.268/577.794s continue、fix conflict信息和add f.py日志支持；cat/ls/status属于验证扩展。"],
+    "alignment": ["T2累计日志有master/v1及d/e.py。", "T3顶部新add d.py和create mode100644 d.py。", "T4切冲突仓库并dev/master日志正确。", "T5 could not apply、currently cherry-picking、both added:c.py。", "T6 nano五行冲突，T7 abort、clean与print('hello')。", "T8五行冲突，T9 git add及cat仅print('world')，剪行顺序正确。", "T10 COMMIT_EDITMSG与final fix conflict/add f.py、world、f.py/clean均正确；保存确认没有单独enter但最终提交已明确证明。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "ENVIRONMENT_AND_VERIFICATION_EXTENSION", "step_id": "S3", "turn": null, "video_timestamp_sec": 367.687, "message": "源v1/v2两个hash的示例适配为预置dev~1/dev；abort重试与最终cat/ls/status为辅助验证，核心patch与冲突目标一致。"},
+      {"dimension": 1, "severity": "warning", "code": "SAVE_GRANULARITY", "step_id": "S7", "turn": 10, "message": "nano Ctrl+O后未单列文件名确认Enter，但final真实提交和日志完整，按语义保存与结果验收。"},
+      {"dimension": 3, "severity": "warning", "code": "LOW_LEVEL_CONFIRMATION_OMITTED", "step_id": "S7", "turn": 10, "message": "提交信息保存的低层确认记录粒度不足；最终两个提交及正确文件状态连续支持成功，未发现关键内容跳变。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 41,
+    "scores": [2, 2, 2, 1],
+    "confidence": [0.97, 0.98, 0.97, 0.98],
+    "summaries": ["八步Git主线及最终file1五行diff有来源支持；修改示例从index.html适配到后续file1，首次编辑结构可由diff交叉支持，记warning。", "初始化、七文件暂存、vi提交、三条历史与最终未暂存diff均成功；根提交信息将源intial改initial只是非核心拼写差异。", "关键计划与本轮操作一致；T8称终端已前台但截图菜单Phone，点击后恢复焦点；局部措辞和重开编辑器为warning。", "T7后T8出现将正文当shell命令的三条command not found，动作中完全没有这些关键失败输入，发生在本轮边界内；这是真实图文记录缺口，非日志缺失。"],
+    "extraction": ["88.021s .git结构支持初始化准备，开终端是边界前环境。", "176.043/220.053s分别未跟踪六项加暂存file1与全七项支持初态。", "176.043s file1暂存及其余六未跟踪直接支持。", "220.053s全七项，352.085s根提交intial支持。", "264.064svi Added a new file4.txt/i/Esc/:wq及352.085s两日志支持。", "308.074s修改index.html示范重复add/commit，396.096s modified file1及440.106s已提交五行diff支持适配到file1；具体编辑是落地实现。", "352.085/396.096s完整与oneline三历史直接支持。", "440.106s精确五行diff删除/移动second line，未暂存目标成立。"],
+    "alignment": ["T2初始化路径正确，T3 ls-a .git结构可见。", "T4 No commits yet及七未跟踪项。", "T5 file1暂存/六未跟踪。", "T6七create mode与根提交，信息为initial而非源intial，含义未变。", "T7vi模板，T8两提交及Added a new file4.txt正确。", "T9重开vi/T10回提示符，T11 modified、add、4insertions提交及clean；final diff交叉支持五行结构。", "T12三条完整及oneline日志，主题和顺序正确。", "T13编辑后final精确@@-1,5+1,5、second line删增且未暂存。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": ["S6"],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "CONCRETE_EDIT_ADAPTATION", "step_id": "S6", "turn": null, "video_timestamp_sec": 308.074, "message": "重复修改提交示例画面用index.html，后续file1历史和diff支持所指定file1结构；具体编辑作为同核心流程落地适配。"},
+      {"dimension": 1, "severity": "warning", "code": "MESSAGE_TYPO_NORMALIZED", "step_id": "S4", "turn": 5, "message": "记录输入intial，下一图命令与提交为initial；根提交目的、七文件与顺序不变，非核心单词拼写差异。"},
+      {"dimension": 2, "severity": "warning", "code": "LOCAL_FOREGROUND_WORDING", "step_id": "S6", "turn": 8, "message": "Thought称终端已前台，但菜单栏Phone；点击终端后继续编辑，属局部观察措辞且已恢复。"},
+      {"dimension": 3, "severity": "error", "code": "UNRECORDED_FAILED_BODY_INPUT", "step_id": "S6", "turn": 8, "message": "T8图新增shell输入A、This is a second line、And this is a 3rd linewq及三条command not found；T7只有成功提交/log，T8之前关键失败输入未记录。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 42, "scores": [2, 2, 2, 2], "confidence": [0.98, 0.98, 0.96, 0.93],
+    "summaries": ["八步核心内容均有教程目标帧和邻帧支持；源视频均匀帧表明时间提示存在漂移，按warning。", "默认初始化、依赖安装、逐段代码、启动和首页均成立；非核心打开文件重试及低层回车省略记warning。", "原生Thought总体准确；S1打开文件多次重复无效，最终恢复，属于辅助操作冗余。", "前后关键代码、安装结果与运行响应连贯；HTML实体及回车归并不能单独推断实际错码，记录粒度记warning，日志对账豁免。"],
+    "extraction": ["41s目标默认JSON且23.405s已完成初始化。", "82s目标express依赖、模块目录和0漏洞，46.810s输入安装命令。", "93s目标空app.js，邻帧92.25s支持空白状态。", "127s目标两行声明，117.025s也已显示两行。", "198s目标PORT5000和模板字符串listen，187.241s同样支持。", "253s及邻帧显示已保存根路由Hello Node Js；该秒点已运行服务，不否定路由提取。", "256.5s目标node app.js和启动日志明确。", "269s及邻帧浏览器localhost5000/Hello Node Js明确。"],
+    "alignment": ["T2-T3向导逐项默认，T8打开package.json显示默认字段；T4-T7辅助打开重试。", "T9 dependencies含express，node_modules/package-lock和终端0漏洞可见。", "T10空app.js及JavaScript状态支持创建。", "T11代码第1/3行两声明正确。", "T12显示PORT5000及listen模板字符串，第5行为空。", "T13路由/响应代码和保存状态明确。", "T14 node app.js输出Server is running on port 5000且无返回提示符。", "T18与final地址localhost:5000/正文Hello Node Js，初次Chrome引导关闭成功。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "SOURCE_TIME_DRIFT", "step_id": "S6", "message": "均匀234.05s已保存路由并准备node，253s目标已运行；目标与邻帧支持正确状态，时间定位漂移不判失败。", "video_timestamp_sec": 253},
+      {"dimension": 1, "severity": "warning", "code": "AUXILIARY_OPEN_RETRIES", "step_id": "S1", "turn": 5, "message": "T4-T7重复打开package.json未立即奏效，最终T8成功；不影响必需初始化与字段。"},
+      {"dimension": 2, "severity": "warning", "code": "REDUNDANT_OPEN_ATTEMPTS", "step_id": "S1", "turn": 6, "message": "连续点击和Enter未打开文件后改快速打开，辅助核验有冗余但恢复成功。"},
+      {"dimension": 3, "severity": "warning", "code": "LOW_LEVEL_RECORD_GRANULARITY", "step_id": "S4", "turn": 10, "message": "代码分段输入未显式列出全部换行；后图两声明和后续启动成立。S5/S6箭头被HTML实体编码，不能据此推断真实代码错误。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "goals-01.jpg", "goals-02.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg", "source-05.jpg", "source-06.jpg"]
+  }
+,
+  {
+    "sample_no": 43, "scores": [2, 2, 2, 1], "confidence": [0.98, 0.99, 0.97, 0.98],
+    "summaries": ["教程完整支持初始化、安装、七行代码、运行与users空表；竖屏目标的email列裁切是局部展示问题。", "五步代码参数和数据库结果正确；npm新版本额外commonjs字段与查看器适配为warning。", "当前观察与计划总体准确，S5恢复查看器后验证成功；T2历史性误输入框措辞无本段依据，记warning。", "T7只右键data.db并等待1秒，T8却已搜索sqlite viewer并安装启用，存在不能由该动作/异步加载解释的关键验证工具状态跳变。"],
+    "extraction": ["18s默认package.json与npm init-y直接支持。", "26.88s真实安装express/sqlite3及0漏洞，34.4s文件树支持。", "93s/邻帧完整require verbose、data.db、users三列约束和exports。", "97.25s/98s node db.js无报错返回，98.75s树有data.db。", "104.25s users0行，105s主键id/name且email被右侧裁切，SQL三列提供交叉依据。"],
+    "alignment": ["T3完整默认字段，额外type commonjs属于当前npm默认。", "T4两依赖和两个产物目录/文件，终端0漏洞，install-scripts警告未导致运行失败。", "T5七行代码含全部列定义、路径、serialize和exports。", "T6运行node db.js无错误返回且data.db出现。", "T9/final users表、id主键/name/email、Rows0明确，S5首次文本打开后恢复查看器成功。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": ["S5"],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "SOURCE_GRID_CROP", "step_id": "S5", "message": "竖屏105s目标email列处于右侧裁切区，SQL完整三列及users0行网格提供依据；非核心视口描述记warning。", "video_timestamp_sec": 105},
+      {"dimension": 1, "severity": "warning", "code": "NPM_DEFAULT_EXTENSION", "step_id": "S1", "turn": 3, "message": "新版本npm额外输出type commonjs，所有指定默认字段完整；不构成核心参数错配。"},
+      {"dimension": 2, "severity": "warning", "code": "AUXILIARY_HISTORY_WORDING", "step_id": "S1", "turn": 2, "message": "Thought称误出现的新建文件输入框已消失，T1仅npm初始化未展示该历史；当前正常文件树与正确动作不受影响。"},
+      {"dimension": 3, "severity": "error", "code": "VIEWER_INSTALL_STATE_JUMP", "step_id": "S5", "turn": 8, "message": "T7 before是二进制提示页，本轮仅右键data.db+1秒等待；T8已在扩展面板搜索sqlite viewer并显示Disable/Uninstall。搜索、打开扩展详情及安装均未记录，直接截图链缺少验证所需工具状态的解释。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "goals-01.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg", "source-05.jpg"]
+  }
+,
+  {
+    "sample_no": 44, "scores": [2, 2, 2, 2], "confidence": [0.99, 0.99, 0.97, 0.96],
+    "summaries": ["五步源画面支持Custom、Colors、RGB64/0/0及最终暗红；原任务省略选色中的非核心试色，缺goal时间记warning。", "自定义背景400000已应用；新版Firefox把同一功能移到Accessibility/Website contrast，导航适配与有限查找记warning。", "逐轮准确观察当前界面、切换取色器并输入正确色值；T13声称上次点击而实际为滚动是局部历史措辞。", "菜单、设置分类、Custom、取色器、色值、确认应用链路成立；T13上次点击措辞不改变状态，记warning，日志已豁免。"],
+    "extraction": ["24.72s about:preferences General，源菜单入口成立。", "32.96/41.2s Contrast Control，后图Custom支持。", "57.681s Colors和前方取色器，管理对话框结构明确。", "补帧73.4-74.5s直接显示Red64 Green0 Blue0 Hue0 Sat240 Lum30；74.161s Background暗红。", "82.401/90.641s Custom和整页暗红稳定。"],
+    "alignment": ["T2-T4应用菜单滚动到Settings并打开about:preferences。", "T4-T13跨新分类查找，T14 Website contrast Custom选中，功能等价。", "T15 Colors Text/Background与链接色、OK/Cancel。", "T16-T20取色器切RGB，输入400000后Red64 Green0 Blue0；T21关闭取色器背景暗红。", "final对话框消失、Custom选中、内容区暗红400000，源画面同样低对比文字，不另加可读性要求。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "SOURCE_NONCORE_COLOR_TRIALS", "step_id": "S4", "message": "源视频先试紫/绿/黑后选暗红，任务聚焦最终64/0/0；省略非核心试色不改变关键方法，无独立goal时间定位。", "video_timestamp_sec": 73.4},
+      {"dimension": 1, "severity": "warning", "code": "SETTINGS_VERSION_ADAPTATION", "step_id": "S2", "turn": 10, "message": "新版本无General分类，将对比度移到Accessibility/Website contrast；按相同Custom/背景功能验收，查找有有限冗余。"},
+      {"dimension": 2, "severity": "warning", "code": "LOCAL_CLICK_HISTORY_WORDING", "step_id": "S2", "turn": 13, "message": "Thought说上一次点击无效，但T12仅向下滚动；当前Off观察准确，本轮点击Custom成功。"},
+      {"dimension": 3, "severity": "warning", "code": "AUXILIARY_CLICK_HISTORY", "step_id": "S2", "turn": 13, "message": "未展示Thought所指上次点击，属于局部辅助历史措辞；T13前Off、后Custom的关键状态可由本轮点击解释。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "trajectory-04.jpg", "source-01.jpg", "source-02.jpg"],
+    "extra_reviewed_sheets": ["extra_source/44/extra-01.jpg", "extra_source/44/extra-02.jpg"]
+  }
+,
+  {
+    "sample_no": 45, "scores": [2, 2, 2, 3], "confidence": [0.97, 0.99, 0.98, 0.98],
+    "summaries": ["源视频支持打开Safari、Clear History、Today及确认；源实际从Safari菜单进入，task_spec写History是同一命令的非核心入口泛化。", "四步正确执行，Today后确认且弹窗消失；起始页常访区因版本/无当前历史未展示，不改变清除目标。", "六轮当前状态与动作一致；菜单展开时将后方称变暗是局部外观措辞。", "桌面、Safari、History菜单、Last Hour下拉、Today、确认关闭逐轮对应，无非日志状态冲突。"],
+    "extraction": ["3.764s Safari Start Page，Dock启动有前后依据。", "7.527s从Safari菜单进入Clear History，9.409s对话框；History是等价入口。", "13.172s四时间段下拉，16.936s Today选定。", "18.817s处理中，20.699s返回Start Page，清除成立。"],
+    "alignment": ["T2 Dock启动后Safari Start Page/Favorites可见；暂无Frequently Visited。", "T3 History菜单Clear History，T4 Last Hour对话框。", "T5列表含四项，T6 Today选定。", "T6正确点击Clear History后final对话框消失，无错误。"],
+    "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "EQUIVALENT_MENU_ENTRY", "step_id": "S2", "message": "源视频在Safari应用菜单点击Clear History，task_spec使用History菜单同名命令；功能与关键Today参数不变。", "video_timestamp_sec": 7.527},
+      {"dimension": 1, "severity": "warning", "code": "START_PAGE_NONCORE_LAYOUT", "step_id": "S1", "turn": 2, "message": "当前新版起始页可见Favorites和引导面板，未显示Frequently Visited；任务核心是Today清除，非核心起始页布局记warning。"},
+      {"dimension": 2, "severity": "warning", "code": "MENU_BACKGROUND_WORDING", "step_id": "S2", "turn": 3, "message": "Thought称History菜单后方内容变暗，截图未呈现模态暗化；菜单目标与后续操作正确。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 46, "scores": [1, 2, 3, 3], "confidence": [0.97, 0.99, 0.99, 0.99],
+    "summaries": ["教程五条命令方法成立，但原始帧目标名称是shorturl，task_spec改为shorturl1且没有名称容忍或ASR依据；关键对象提取不通过。", "候选严格完成给定shorturl1任务，最终Owner正确；PostgreSQL18角色列表无Member of且postgres有额外权限为展示差异warning。", "五轮Thought均准确引用当前状态，命令、目标及参数正确，无多余试探。", "五个命令与紧邻截图对应，输出真实连贯；源任务提取问题不重复计入候选记录，日志豁免。"],
+    "extraction": ["48.675s文字直接给psql-U postgres；Ubuntu18是落地环境版本。", "64.9s原图角色名shorturl（末字符为字母l），不是task_spec的shorturl1；无容忍或ASR。", "81.125s原图连接shorturl，task_spec变成shorturl1。", "原始video007@97.351s明确ALTER DATABASE shorturl OWNER TO shorturl;，两目标均被task_spec添1。", "113.576s要求核对shorturl Owner，task_spec把目标改为shorturl1。"],
+    "alignment": ["T2 psql18.6和postgres=#，无连接错误。", "T3 postgres/shorturl1均Superuser，postgres额外Create role/DB等是合法预置属性。", "T4连接shorturl1 as user postgres，提示符正确。", "T5 ALTER DATABASE shorturl1 OWNER TO shorturl1;返回ALTER DATABASE。", "final四数据库列表，shorturl1行Owner为shorturl1。"],
+    "extraction_fail": ["S2", "S3", "S4", "S5"], "method_fail": [], "result_fail": [], "quality_fail": [], "record_fail": [],
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "SOURCE_DATABASE_ROLE_NAME_CHANGED", "step_id": "S4", "message": "原始1920px视频帧97.351s为ALTER DATABASE shorturl OWNER TO shorturl;，源角色/连接/验证也都是shorturl。task_spec全部改为shorturl1且未提供名称容忍；关键数据库与角色对象的提取冲突。", "video_timestamp_sec": 97.351},
+      {"dimension": 1, "severity": "warning", "code": "ROLE_DISPLAY_VERSION", "step_id": "S2", "turn": 3, "message": "PostgreSQL18角色表没有旧版Member of列，postgres另含Create role/DB等；两个指定角色Superuser、后续连接和改所有权成立。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 47, "scores": [1, 1, 1, 1], "confidence": [0.99, 0.99, 0.99, 0.98],
+    "summaries": ["七步主要SQL方法有教程依据，但S3把parent>child的两行fillmore写成五行，S5把七parents乘两curly的14行写成12，核心输出提取矛盾。", "cities、parents、homes与最终配对成立；S4全部ints命令缺失，T6改输入配对SQL；S5首条输入select*替代必需parent投影，且额外改源数据，未完成整套练习。", "T6规划ints却实际执行S7配对；S5未经任务要求改clinton数据再重放，关键动作与计划/目标冲突，不达标准。", "T6仅记录两条配对查询，T7却有额外select*自连接及15行结果，形成不能由动作解释的关键查询状态跳变；不以缺日志为失败原因。"],
+    "extraction": ["600/700/750s载入与cities报错/三城/经纬度，均匀811.986/1217.979s及相邻提供过滤与west coast。", "1700s源.read后parents七行与abraham两个孩子。", "2100/2150s直接显示parent>child只有fillmore两行，task_spec五行含abraham是核心错误；homes三行一致。", "2920/2960/3160s分别order by one、number升序与eight过滤，原提取S4方法有依据。", "4150s两curly乘七parents共14行，源首条select*；task_spec12行parent投影与源输出不符；匹配两行eisenhower/delano正确。", "4230/4250s等parent自连接15行，与S6一致。", "4400s幻灯片给四个去重配对，!=双向八行是同一条件泛化，有依据。"],
+    "alignment": ["T2完整两次syntax error、三个城市与两组经纬度；T3经度、Berkeley过滤/west coast。", "T4新会话.read、T5七parents与barack/clinton。", "T6三查询包含abraham两行、parent>child两fillmore和homes三行；错误五行goal已在提取维度定位，不惩罚实际正确SQL。", "T6动作无任何ints查询，仅两条S7配对；全部排序/别名/过滤结果缺失。", "T7更新clinton fur short，T8确认两curly；T8第一条select*得到14行，未执行任务必需select parent笛卡尔输出；随后两条匹配join结果正确。", "T10显示S6等parent自连接15行；T9正确输入。", "final两配对语句与八/四行结果完整，但不能代替缺失S4。"],
+    "extraction_fail": ["S3", "S5"], "method_fail": ["S4", "S5"], "result_fail": ["S4", "S5"], "quality_fail": ["S4", "S5"], "record_fail": ["S4"],
+    "task_completion": "not_pass", "completion_reason": "未完成ints三条排序/表达式/过滤查询；S5首条parent列笛卡尔查询也没有出现。最终兄弟姐妹四对虽正确，不能代表全部七步完成。",
+    "issues": [
+      {"dimension": 0, "severity": "error", "code": "SQL_OUTPUT_EXTRACTION_CONTRADICTION", "step_id": "S3", "message": "源2100/2150s parent>child只返回fillmore两行；goal却写五行abraham/abraham/fillmore/fillmore/fillmore，关键结果错误。", "video_timestamp_sec": 2100},
+      {"dimension": 0, "severity": "error", "code": "JOIN_ROWCOUNT_EXTRACTION", "step_id": "S5", "message": "源七条parents和两条curly狗的笛卡尔连接是14行，4150s可逐行计数；goal要求12行，且将源select*改为parent投影。", "video_timestamp_sec": 4150},
+      {"dimension": 1, "severity": "error", "code": "INTS_STEP_REPLACED", "step_id": "S4", "turn": 6, "message": "本轮应执行ints三条查询，实际actions为S7兄弟姐妹!=与<两查询，所有ints输出缺失。"},
+      {"dimension": 1, "severity": "error", "code": "JOIN_PROJECTION_AND_DATA_EDIT", "step_id": "S5", "turn": 8, "message": "首条实际select*而非要求select parent；并在T7更新clinton为short，额外修改查询源数据。后两条匹配join虽正确，首条必需投影未完成。"},
+      {"dimension": 2, "severity": "error", "code": "PLAN_ACTION_QUERY_CONFLICT", "step_id": "S4", "turn": 6, "message": "Thought逐项规划ints相加排序/number别名/等值过滤，实际完全输入parents配对SQL，关键计划和动作冲突。"},
+      {"dimension": 2, "severity": "error", "code": "UNREQUESTED_INPUT_DATA_CHANGE", "step_id": "S5", "turn": 7, "message": "未要求更新课堂表数据，却为匹配预期修改clinton fur后重放；改变源素材且未补齐S4。"},
+      {"dimension": 3, "severity": "error", "code": "UNRECORDED_SELF_JOIN_QUERY", "step_id": "S4", "turn": 7, "message": "T6只有两条两列配对SQL；T7 before却新增select* from parents as a, parents as b where a.parent=b.parent及四列15行，不能由已记录两条SQL解释。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"],
+    "extra_reviewed_sheets": ["extra_source/47/extra-01.jpg", "extra_source/47/extra-02.jpg", "extra_source/47/extra-03.jpg", "extra_source/47/extra-04.jpg", "extra_source/47/extra-05.jpg", "extra_source/47/extra-06.jpg", "extra_source/47/extra-07.jpg", "extra_source/47/extra-08.jpg"]
+  }
+,
+  {
+    "sample_no": 48, "scores": [2, 1, 1, 1], "confidence": [0.97, 0.99, 0.99, 0.98],
+    "summaries": ["源三步设置窗口、Theme和指向Accent有依据；将未勾选开关旁On标签写成选中默认值是非核心描述偏差，指向推断点击记warning。", "成功打开设置与主题列表，未改颜色；但T8点击基础色色块，T9取色器为292929而非强调色，强调入口没有完成。", "T8明显错误坐标落在Base Color；T9未识别灰色取色器仍宣布强调入口已打开并退出，没有纠正核心目标。", "关键窗口链连续，但T9将基础色取色器伪称强调色入口并按完成退出，与当前颜色值明确冲突，不属于日志问题。"],
+    "extraction": ["8.45s完整外观/字体/行为，Separate Distraction复选框空但旁On标签不能作为勾选依据。", "13.36s Theme各项及颜色块；Use System Accent复选框空，任务On默认措辞偏差。", "14.54s指针在Accent色块，来源在点击瞬间结束，任务允许即时取色器与不修改颜色，有限推断。"],
+    "alignment": ["T2编辑器菜单/T3设置/T4最大化，外观字体行为和Close可见。", "T4-T6滚动后类别未改变，T6点界面主题、T7高级开关后T8完整Theme；这是版本设置分类适配。", "T8坐标817,294实际基础色色块，T9取色器R/G/B均41且Hex292929；final仅关闭灰色取色器，没有点击蓝色强调色。"],
+    "method_fail": ["S3"], "result_fail": ["S3"], "quality_fail": ["S3"], "record_fail": ["S3"],
+    "task_completion": "not_pass", "completion_reason": "设置与Theme区域成功打开且颜色未改，但打开的是基础色292929取色器，没有进入浅蓝色Accent Color自定义入口。",
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "UNCHECKED_ON_LABEL", "step_id": "S2", "message": "源Use System Accent Color旁有On字样但复选框为空；S1 Separate Distraction亦为空。任务把标签写成选中默认值，属于非核心外观描述偏差，核心不改颜色目标不变。", "video_timestamp_sec": 13.36},
+      {"dimension": 0, "severity": "warning", "code": "SOURCE_CLICK_INFERENCE", "step_id": "S3", "message": "14.54s只可见指针在Accent色块且来源结束，点击从动作边界推断，未扩展为选择新颜色。", "video_timestamp_sec": 14.54},
+      {"dimension": 1, "severity": "error", "code": "WRONG_COLOR_FIELD", "step_id": "S3", "turn": 8, "message": "817,294点击在基础色色块；T9取色器为Hex292929/RGB41,41,41，强调浅蓝入口未打开，Esc后未纠正。"},
+      {"dimension": 2, "severity": "error", "code": "WRONG_TARGET_UNCORRECTED", "step_id": "S3", "turn": 9, "message": "当前取色器显示基础灰292929，Thought却确认强调色入口成功，未回到列表补点正确蓝色色块便结束。"},
+      {"dimension": 3, "severity": "error", "code": "FALSE_CURRENT_COLOR_TARGET", "step_id": "S3", "turn": 9, "message": "把当前灰色基础色取色器称为强调色入口，当前RGB/Hex直接否定该关键观察，并据此选择结束。"},
+      {"dimension": 1, "severity": "warning", "code": "THEME_CATEGORY_ADAPTATION", "step_id": "S2", "turn": 6, "message": "新版分分类树，滚动后通过界面主题和高级展示完整列表；有限导航适配不单独否定方法。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "goals-01.jpg", "source-01.jpg", "source-02.jpg", "source-03.jpg", "source-04.jpg"]
+  }
+,
+  {
+    "sample_no": 49, "scores": [2, 1, 1, 1], "confidence": [0.96, 0.99, 0.99, 0.99],
+    "summaries": ["源su、usermod加当前用户、注销重登和接口恢复有依据；S4把旧窗口错误状态扩为一次再启动属于非核心失败核验扩展。", "最终当前user的id含wireshark且欢迎页恢复本地接口，修复结果成立；但S3动作用户名shovon错误，S5以关闭重开终端代替必需注销登录，关键方法不通过。", "T5计划给user加组却输入shovon，关键参数与当前身份冲突；随后未纠错，正确最终图不能抵消该动作问题。", "T5输入usermod-aG wireshark shovon，T6截图命令却为user且没有错误/更正，关键用户名出现直接图文跳变；日志豁免不消除。"],
+    "extraction": ["11.55s普通shovon终端/Desktop。", "17.325s su-与root提示符，sudo-i为已声明等价方法。", "28.875s输入usermod-aG wireshark shovon，后续退出终端；泛化为当前用户保持目标语义。", "5.775s旧Wireshark Permission denied，34.651s只可见旧应用在任务栏，未直接支持额外再启动，非核心失败状态验证warning。", "46.201s登录管理器，51.976s重登桌面有直接依据。", "51.976sInternet/Wireshark，57.751/63.526s eth0/any/lo恢复。"],
+    "alignment": ["T2/T3 CtrlAltT终端普通user，拖动后聚焦正确。", "T4密码提示/T5 root，sudo-i等效成功。", "T5动作使用shovon而当前用户user；T6图实际命令user并退回普通shell，结果成立但必需用户名动作冲突。", "T7新窗口已恢复接口，关闭回旧窗口T9仍无本地接口；新版仅远程服务无旧版错误文案，功能上的旧状态核验成立。", "T10-T12 id证明新进程含wireshark，桌面清空成立，但只exit关闭/重开终端，没有任务所需注销重新登录。", "应用搜索启动后final本地eth0/any/lo及波形可见，权限错误不存在，修复结果成立。"],
+    "method_fail": ["S3", "S5"], "result_fail": [], "quality_fail": ["S3"], "record_fail": ["S3"],
+    "task_completion": "pass", "completion_reason": "最终当前普通user的id包含126(wireshark)，新Wireshark欢迎页列出eth0/any/lo并有流量波形，修复终态成立；关键用户名记录和注销方法问题独立不通过。",
+    "issues": [
+      {"dimension": 0, "severity": "warning", "code": "NONCORE_ERROR_RECHECK_EXTENSION", "step_id": "S4", "message": "源5.775s初始权限错误后加组，34.651s旧Wireshark仍在任务栏；未直接显示加组后额外再启动，任务扩展一次失败核验但不改核心修复。", "video_timestamp_sec": 34.651},
+      {"dimension": 1, "severity": "error", "code": "WRONG_CURRENT_USERNAME", "step_id": "S3", "turn": 5, "message": "当前登录身份user，动作却执行usermod-aG wireshark shovon；必需加组目标用户错误，后图user成功不能消除动作冲突。"},
+      {"dimension": 1, "severity": "error", "code": "LOGOUT_RELOGIN_REPLACED", "step_id": "S5", "turn": 10, "message": "只id/exit关闭终端后重新CtrlAltT验证组，无注销菜单/登录管理器或任何启动注销的操作；以终端重开替代任务要求的会话注销重登。"},
+      {"dimension": 2, "severity": "error", "code": "PLAN_USERNAME_ACTION_CONFLICT", "step_id": "S3", "turn": 5, "message": "Thought明确要给当前user加组，实际content却把原教程shovon代入，关键参数与计划/当前截图矛盾。"},
+      {"dimension": 3, "severity": "error", "code": "ACTION_SCREENSHOT_USERNAME_JUMP", "step_id": "S3", "turn": 6, "message": "T5记录shovon，T6命令回显为user且成功无错误，缺少任何修正或重新执行动作；直接关键用户名跳变。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "trajectory-03.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+,
+  {
+    "sample_no": 50, "scores": [3, 1, 1, 1], "confidence": [0.98, 0.99, 0.98, 0.99],
+    "summaries": ["教程完整支持四步Accessibility、Display、调高和恢复，其他开关不改，提取无核心或辅助矛盾。", "两次滑块拖动和最终Normal成立，其余开关保持原状；但回页核验阶段多次明显错误导航坐标，超过一次成功纠错，S2方法不通过。", "T7-T11持续出现计划与点击目标错位，连续进入Appearance/General后又点侧边Accessibility代替Display，最终页面正确不能消除系统性错误动作。", "T5 before已含本轮拟输入搜索词，T10只点当前侧边Accessibility却T11已进入Display；存在动作前画面时序与关键导航跳变，日志豁免后仍不通过。"],
+    "extraction": ["11.537s Accessibility Vision/Hearing/Display直接支持。", "17.305s Display设置及Normal/Maximum滑块、各开关明确。", "23.074s Display Contrast increased提示及28.842s滑块靠Maximum。", "40.379/46.147s滑块回Normal，其他开关保持原状态。"],
+    "alignment": ["T2辅助功能总览，边栏已选中，T1点击成立。", "T3进入Display成功；T5-T11额外搜索Motion核验后连续错导航：T7点击410115、T8点击317468转General、T10点击侧边317462而不是Display，记录方法出现反复错误。", "原始T3@1146px旋钮672439，本轮673440→841440；T4靠Maximum的蓝轨支持调高，其他开关未变。", "T4反向841440→673440，T5/T11/final Normal左端；Display各开关原状，Motion另页Auto-play仍On。"],
+    "method_fail": ["S2"], "result_fail": [], "quality_fail": ["S2"], "record_fail": ["S2"],
+    "task_completion": "pass", "completion_reason": "候选截图证明滑块从Normal到靠Maximum再回Normal，Display开关与Motion动画开关保持初始状态；额外回页核验的错误导航和时序问题独立不通过。",
+    "issues": [
+      {"dimension": 1, "severity": "error", "code": "REPEATED_WRONG_NAVIGATION_TARGETS", "step_id": "S2", "turn": 10, "message": "回页核验中连续点击错误位置进入Appearance/General；T10要进Display却点317462侧边Accessibility，T11已是Display后又点击520367非Display入口，超过一次成功纠错。"},
+      {"dimension": 2, "severity": "error", "code": "SYSTEMATIC_PLAN_COORDINATE_MISMATCH", "step_id": "S2", "turn": 8, "message": "T7计划Accessibility却点410115，随后Appearance；T8计划Accessibility却点317468后为General；T10计划右侧Display却点左侧Accessibility，关键导航持续错位。"},
+      {"dimension": 3, "severity": "error", "code": "SEARCH_BEFORE_ALREADY_TYPED", "step_id": "S2", "turn": 5, "message": "T5 before搜索框已含auto-play animated images并显示搜索结果，而本轮动作才点击搜索框输入同词；动作前证据时序冲突。"},
+      {"dimension": 3, "severity": "error", "code": "DISPLAY_NAVIGATION_STATE_JUMP", "step_id": "S2", "turn": 11, "message": "T10 before辅助功能总览，本轮只点左侧Accessibility317462并等待；T11已是Display页，无能解释从总览进入Display的操作，本轮520367点击又与当前Display页不匹配。"}
+    ],
+    "reviewed_sheets": ["trajectory-01.jpg", "trajectory-02.jpg", "source-01.jpg", "source-02.jpg"]
+  }
+]
