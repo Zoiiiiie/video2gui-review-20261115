@@ -1,0 +1,25 @@
+{
+  "evaluator": "current_conversation_model",
+  "execution_mode": "Direct visual and semantic review in conversation; no external model API.",
+  "rubric_version": "4.2.0",
+  "repository": "https://code.byted.org/aidp/label-code-sprouty-datagate",
+  "repository_commit": "5978dd23e75401c864372a1d41131bc5f510682a",
+  "input_source_file": "verifier-inputs-50_parquet-repaired-partial.json",
+  "input_sha256": "a05f0548b0a365d7e54418eff0a5d5f59707f4a78929defcf80de53d0a3b888d",
+  "scope": "rubric_only_executor_log_waived",
+  "waiver": [
+    "executor_log existence",
+    "independent log exact reconciliation"
+  ],
+  "training_gate": "not_evaluated",
+  "input_schema_validation": "Not repaired or certified by this evaluation.",
+  "aggregate_rule": "All four rubric dimensions score >=2; no invented weighted aggregate.",
+  "source_review_limitation": [
+    {
+      "sample_no": 16,
+      "path": "evidence/16_ms_r008_linux_metasploit_framework_s1_8b2e02/source-01.jpg",
+      "reason": "Failed to process image: the image contains non-compliant content",
+      "treatment": "Unreviewed source evidence; relevant extraction steps not_pass."
+    }
+  ]
+}

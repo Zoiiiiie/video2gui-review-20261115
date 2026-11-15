@@ -1,0 +1,32 @@
+{
+  "validated_at": "2026-11-15T06:18:35.412646+00:00",
+  "human_workflow_exact_source_matches": 50,
+  "machine_results_byte_identical": true,
+  "human_screenshot_sha256_matches": true,
+  "csv_rows": 50,
+  "browser_filters": {
+    "diff": 12,
+    "agree": 21,
+    "pending": 17,
+    "focus": 1,
+    "field_difference": 16,
+    "all": 50
+  },
+  "browser_layout": {
+    "desktop": {
+      "viewport": 1440,
+      "page_width": 1440
+    },
+    "mobile": {
+      "viewport": 390,
+      "page_width": 390
+    }
+  },
+  "browser_search_inkscape": 1,
+  "browser_diff_original_judgment_lines": [
+    "status: passed",
+    "rubric_result: not_pass"
+  ],
+  "browser_broken_loaded_images": 0,
+  "final_acceptance_rate_reproduced": false
+}

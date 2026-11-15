@@ -1,0 +1,51 @@
+{
+  "source": "用户提供的本批抽样人评总结及上传截图",
+  "total": 50,
+  "result_count": 46,
+  "result_rate": 0.92,
+  "original_conclusion": [
+    "这批抽样中只发现有一个与教程视频不一样的可以重点看下（ID：m5_r02*mac_inkscape_S1_374178）",
+    "46/50 92%（目前这批正例中整体效果不错在50个抽样中只有一个样例出现2次动作丢失，其中大部分错误出现在有文本大小写区分，操作范围差异（尤其绘图设计类），幻觉多余操作，版本使用不一致等问题本质不属于轨迹问题）"
+  ],
+  "focus": {
+    "reported_id": "m5_r02*mac_inkscape_S1_374178",
+    "candidate_sample_no": 39,
+    "candidate_sample_id": "ms_r024_mac_inkscape_s1_374778",
+    "exact_id_match": false,
+    "match_basis": "当前50条中唯一Inkscape记录；原文ID与实际ID不完全一致，作为关注候选定位。"
+  },
+  "action_loss": {
+    "samples": 1,
+    "actions": 2,
+    "sample_id": null
+  },
+  "problem_categories": [
+    "文本大小写区分",
+    "操作范围差异，尤其绘图设计类",
+    "幻觉多余操作",
+    "版本使用不一致"
+  ],
+  "screenshot": {
+    "path": "assets/human-sampling-summary.png",
+    "sha256": "ea333011d0d87e4ecad19e1f87acce085826a66e4d350c1001d3f1efc3c674ac",
+    "statistics": {
+      "analyzed_cases": 50,
+      "cases_with_revision_differences": 33,
+      "error_steps": 246,
+      "redundant_steps": 42,
+      "missing_steps": 2,
+      "text_corrections": 105,
+      "text_correction_turns": 207,
+      "original_steps": 7144,
+      "annotated_steps": 7104,
+      "step_net_change": -40,
+      "unchanged_steps": 6856,
+      "error_step_percentage_as_shown": "4.1%"
+    },
+    "scope_note": "截图统计跨干净复刻、错误恢复、素材准备、初始构造等记录类型。是人评修订差距，不是人机判定diff；不用于推导本页逐条通过或一致率。"
+  },
+  "individual_verdicts": null,
+  "scope_note": "用户提供的是批次结论与一个重点关注候选，没有46条对应的逐条通过名单，也未指定其余4条的ID。不能反推逐条人评判定、把动作丢失关联到Inkscape或计算逐条一致率。",
+  "correction_note": "撤回将平台workflow填写状态当作本次抽样人评结论所得的21一致、12diff、63.64%一致率。平台记录保留为独立历史上下文。",
+  "role": "外部批次汇报，仅用于对账，不替代JSON逐条人评"
+}

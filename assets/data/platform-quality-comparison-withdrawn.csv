@@ -1,0 +1,52 @@
+﻿sample_no,sample_id,software,human_overall_status,machine_rubric_result,comparison,direction,human_original_conclusion,workflow_revision,source_path,comparison_explanation
+1,ms_r001_linux_python_3_s1_95a1e7,Python 3,missing,pass,pending,,,,tables.cua_case_state[0].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+2,ms_r001_mac_pandas_s1_d13919,Pandas,passed,pass,agree,,,8,tables.cua_case_state[1].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+3,ms_r002_linux_java_s3_fc417e,Java,needs_verification,not_pass,pending,,,7,tables.cua_case_state[2].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+4,ms_r002_mac_java_development_kit_s3_7b5b98,Java Development Kit,pending,not_pass,pending,,,2,tables.cua_case_state[3].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+5,ms_r003_linux_scikit_learn_s1_4c4f27,Scikit Learn,missing,pass,pending,,,,tables.cua_case_state[4].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+6,ms_r003_mac_pytorch_s1_76f582,Pytorch,needs_work,pass,diff,human_fail_machine_pass,,78,tables.cua_case_state[5].state_json.workflow.data.overall,人评总体需改进，但当前机评四维均通过。
+7,ms_r004_linux_linux_s2_181afa,Linux,missing,pass,pending,,,,tables.cua_case_state[6].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+8,ms_r004_mac_bash_s1_372b7b,Bash,passed,pass,agree,,无,18,tables.cua_case_state[7].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+9,ms_r005_linux_mariadb_s1_551beb,Mariadb,passed,pass,agree,,,8,tables.cua_case_state[8].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+10,ms_r005_linux_mysql_s1_7f138a,Mysql,needs_work,not_pass,agree,,第四、六、七、八，以上四个步骤出现错误，现已修正。,38,tables.cua_case_state[9].state_json.workflow.data.overall,人评需改进，机评未通过；总体方向一致。
+11,ms_r006_win_notepad_s2_ac0f96,Notepad,passed,pass,agree,,,14,tables.cua_case_state[11].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+12,ms_r006_mac_visual_studio_code_s2_1b97f5,Visual Studio Code,needs_work,not_pass,agree,,"光标停在第41行 <a>Go</a> 上，状态栏显示 Ln 41, Col 14。现在要回到第42行并练习按词跳转：先按一次向下方向键回到第42行，再用 Command+左方向键跳到行首，然后连续按 Option+右方向键按单词边界向右移动，观察光标在链接代码各单词之间的落点。
+第42、43行已经是两行完全相同的链接代码，第44行空行高亮，状态栏显示 Ln 44, Col 1。当前视口只能显示到第52行，为了确认文件末尾的结束标签行号，我在编辑器内滚动视图让下方的行完整显示出来。",58,tables.cua_case_state[10].state_json.workflow.data.overall,人评需改进，机评未通过；总体方向一致。
+13,ms_r007_win_angularjs_s1_e2fdf6,Angularjs,passed,not_pass,diff,human_pass_machine_fail,无,7,tables.cua_case_state[12].state_json.workflow.data.overall,人评总体通过，但机评未通过：轨迹方法与结果、视觉与训练质量。
+14,ms_r007_win_react_js_s1_aeee6c,React Js,needs_work,pass,diff,human_fail_machine_pass,无,67,tables.cua_case_state[13].state_json.workflow.data.overall,人评总体需改进，但当前机评四维均通过。
+15,ms_r008_linux_kali_linux_s1_09a467,Kali,passed,not_pass,diff,human_pass_machine_fail,,8,tables.cua_case_state[14].state_json.workflow.data.overall,人评总体通过，但机评未通过：教程步骤提取、轨迹方法与结果、视觉与训练质量、记录连续性。
+16,ms_r008_linux_metasploit_framework_s1_8b2e02,Metasploit Framework,missing,not_pass,pending,,,,tables.cua_case_state[15].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+17,ms_r009_win_microsoft_windows_s5_ca69c5,Microsoft Windows,passed,pass,agree,,无,23,tables.cua_case_state[16].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+18,ms_r009_win_windows_file_explore_s1_e159f3,Windows File Explore,missing,pass,pending,,,,tables.cua_case_state[17].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+19,ms_r010_win_fastapi_s1_ca151b,Fastapi,needs_work,pass,diff,human_fail_machine_pass,,6,tables.cua_case_state[19].state_json.workflow.data.overall,人评总体需改进，但当前机评四维均通过。
+20,ms_r010_mac_flask_s1_21e860,Flask,passed,pass,agree,,软件步骤逻辑和内容都符合 轨迹一致,23,tables.cua_case_state[18].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+21,ms_r011_win_opencv_s2_13f9b0,Opencv,missing,not_pass,pending,,,,tables.cua_case_state[21].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+22,ms_r011_linux_opencv_s1_699f8c,Opencv,passed,pass,agree,,,5,tables.cua_case_state[20].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+23,ms_r012_win_intellij_idea_s1_48b575,Intellij Idea,needs_work,not_pass,agree,,,7,tables.cua_case_state[22].state_json.workflow.data.overall,人评需改进，机评未通过；总体方向一致。
+24,ms_r013_linux_chromium_s1_17acd8,Chromium,passed,pass,agree,,,11,tables.cua_case_state[23].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+25,ms_r013_mac_google_chrome_s1_4d1a93,Google Chrome,needs_work,pass,diff,human_fail_machine_pass,Chrome 窗口前台显示一个 New Tab 标签，标签栏最右侧有加号按钮，页面是 Google 新标签页，没有弹窗遮挡。第一步需要用加号按钮新建标签页，所以把指针移到标签栏右侧的圆形加号按钮上单击一次，然后等待新标签页打开并成为活动标签,9,tables.cua_case_state[24].state_json.workflow.data.overall,人评总体需改进，但当前机评四维均通过。
+26,ms_r014_win_c_s1_90e90e,C,needs_work,not_pass,agree,,,6,tables.cua_case_state[25].state_json.workflow.data.overall,人评需改进，机评未通过；总体方向一致。
+27,ms_r014_win_net_framework_s1_9f2d8a,Net Framework,passed,not_pass,diff,human_pass_machine_fail,,7,tables.cua_case_state[26].state_json.workflow.data.overall,人评总体通过，但机评未通过：教程步骤提取、轨迹方法与结果。
+28,ms_r015_win_kotlin_s2_d5d28c,Kotlin,needs_work,pass,diff,human_fail_machine_pass,无,23,tables.cua_case_state[27].state_json.workflow.data.overall,人评总体需改进，但当前机评四维均通过。
+29,ms_r016_mac_html_s2_82163f,Html,missing,not_pass,pending,,,,tables.cua_case_state[28].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。另有特定变体审核通过，按其审核范围单独展示，不当作总体 Rubric 结论。
+30,ms_r016_mac_javascript_s2_366efd,Javascript,missing,not_pass,pending,,,,tables.cua_case_state[29].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+31,ms_r018_win_microsoft_power_bi_s1_a5316d,Microsoft Power Bi,missing,not_pass,pending,,,,tables.cua_case_state[30].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。另有特定变体审核通过，按其审核范围单独展示，不当作总体 Rubric 结论。
+32,ms_r020_linux_redis_s1_40baff,Redis,missing,not_pass,pending,,,,tables.cua_case_state[31].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+33,ms_r020_linux_redis_s1_89ad66,Redis,missing,pass,pending,,,,tables.cua_case_state[32].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+34,ms_r021_win_flutter_s1_d59bbf,Flutter,missing,not_pass,pending,,,,tables.cua_case_state[33].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+35,ms_r022_win_open_broadcaster_sof_s3_96f6ef,Open Broadcaster Sof,missing,pass,pending,,,,tables.cua_case_state[34].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+36,ms_r023_linux_jupyter_notebook_s2_42eb4c,Jupyter Notebook,passed,pass,agree,,,6,tables.cua_case_state[35].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+37,ms_r023_mac_jupyter_notebook_s3_88cb4e,Jupyter Notebook,missing,not_pass,pending,,,,tables.cua_case_state[36].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+38,ms_r024_linux_gimp_s1_c38c60,Gimp,missing,not_pass,pending,,,,tables.cua_case_state[37].state_json.workflow.data.overall,人评总体未给出明确通过/需改进结论，不计入一致率和 diff。
+39,ms_r024_mac_inkscape_s1_374778,Inkscape,passed,not_pass,diff,human_pass_machine_fail,,7,tables.cua_case_state[38].state_json.workflow.data.overall,人评总体通过，但机评未通过：教程步骤提取、轨迹方法与结果、视觉与训练质量、记录连续性。
+40,ms_r025_linux_git_s3_c33468,Git,passed,pass,agree,,无,6,tables.cua_case_state[39].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+41,ms_r025_mac_git_s2_1b76a1,Git,passed,not_pass,diff,human_pass_machine_fail,软件步骤逻辑和内容都符合,9,tables.cua_case_state[40].state_json.workflow.data.overall,人评总体通过，但机评未通过：记录连续性。
+42,ms_r026_win_node_js_express_s1_fd977e,Node Js Express,passed,pass,agree,,,6,tables.cua_case_state[41].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+43,ms_r026_win_node_js_s1_beb245,Node Js,needs_work,not_pass,agree,,无,21,tables.cua_case_state[42].state_json.workflow.data.overall,人评需改进，机评未通过；总体方向一致。
+44,ms_r027_mac_mozilla_firefox_s2_92c1c1,Mozilla Firefox,passed,pass,agree,,无,22,tables.cua_case_state[43].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+45,ms_r027_mac_safari_s2_796c56,Safari,passed,pass,agree,,,5,tables.cua_case_state[44].state_json.workflow.data.overall,人评与机评总体判断一致（均通过）。
+46,ms_r028_linux_postgresql_s1_e799ae,Postgresql,needs_work,not_pass,agree,,,13,tables.cua_case_state[45].state_json.workflow.data.overall,人评需改进，机评未通过；总体方向一致。
+47,ms_r028_mac_sqlite_s2_42d9c3,Sqlite,needs_work,not_pass,agree,,,11,tables.cua_case_state[46].state_json.workflow.data.overall,人评需改进，机评未通过；总体方向一致。
+48,ms_r029_win_godot_engine_s3_e70f70,Godot Engine,needs_work,not_pass,agree,,操作步骤逻辑与内容相符合,34,tables.cua_case_state[47].state_json.workflow.data.overall,人评需改进，机评未通过；总体方向一致。
+49,ms_r030_linux_wireshark_s1_9ff450,Wireshark,passed,not_pass,diff,human_pass_machine_fail,,7,tables.cua_case_state[48].state_json.workflow.data.overall,人评总体通过，但机评未通过：轨迹方法与结果、视觉与训练质量、记录连续性。
+50,ms_r030_mac_macos_s3_68e840,macOS,passed,not_pass,diff,human_pass_machine_fail,,13,tables.cua_case_state[49].state_json.workflow.data.overall,人评总体通过，但机评未通过：轨迹方法与结果、视觉与训练质量、记录连续性。
